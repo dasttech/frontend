@@ -1,0 +1,58 @@
+.footer-controller{
+  display: flex;
+  justify-content: center;
+  padding: 80px;
+  color: white;
+  font-family: 'Inter';
+}
+.footer{
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  outline: 1px solid white;
+}
+.icons{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.container1,
+.container2,
+.container3,
+.container4{
+  line-height: 200%;
+}
+.container4 button{
+  padding: 10px;
+  border-radius: 1cm;
+  border: none;
+  background: #5758E0;
+  border: 2px solid #5758E0;
+  border-radius: 30px;
+  font-family: 'Inter';
+  font-size: 16px;
+  color: #FFFFFF;
+}
+
+@media screen and (max-width: 700px) {
+  .footer-controller{
+    padding-top: 2cm;
+    padding: 0px;
+    text-align: center;
+    font-size: 15px;
+    margin: auto;
+  }
+  .footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+  .container1,
+  .container2,
+  .container3,
+  .container4{
+    margin-top: 40px;
+  }
+}

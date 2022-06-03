@@ -1,0 +1,82 @@
+.container3{
+	background: rgba(255, 255, 255, 0.1);
+	padding-bottom: 120px;
+}
+.roadmap-cover{
+	display: flex;
+	padding: 10px;
+	padding-top: 4cm;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+}
+.title{
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 300;
+	font-size: 20px;
+	color: white;
+	line-height: 130%;
+}
+.roadmap{
+	display: flex;
+	padding-top: 20px;
+	width: 90%;
+	margin: auto;
+	justify-content: space-between;
+}
+.Q4, .Q1, .Q2{
+	padding: 20px;
+	margin: 10px 10px;
+	width: 100%;
+	height: 470px;
+	background: linear-gradient(122.8deg, #1D3062 14.84%, #3D272B 100%);
+	border: 5px solid rgba(219, 228, 254, 0.5);
+	border-radius: 20px;
+	text-align: center;
+	color: white;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 300;
+	font-size: 25px;
+	line-height: 130%;
+}
+.Q1 p, .Q2 p, .Q4 p{
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 250%;
+}
+.rm{
+	background-color: white;
+	border-radius: 100%;
+	width: 40px;
+	height: 40px;
+	padding: 3px;
+}
+
+@media screen and (max-width: 700px) {
+	.roadmap{
+		flex-direction: column;
+		width: 100%;
+	}
+	.title p{
+		font-size: 12px;
+	}
+	.Q4, .Q1, .Q2{
+		width: 90%;
+		font-size: 23px;
+		padding: 3px;
+		padding-top: 20px;
+		margin: auto;
+		margin-top: 12px
+	}
+	.Q1 p, .Q2 p, .Q4 p{
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 150;
+	font-size: 16px;
+	line-height: 250%;
+}
+}
