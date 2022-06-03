@@ -11,8 +11,12 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
+<<<<<<< HEAD
   logo = 'assets/images/logo.png';
   twitter = 'assets/icons/twitter.png';
   telegram = 'assets/icons/telegram.png';
   rocket = 'assets/icons/rocket.png';
+=======
+
+>>>>>>> 707151d64471775a22feaa2874c0b9a29114ecdd
 }
