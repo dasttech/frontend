@@ -7,9 +7,6 @@
 	color: #FFFFFF;
 	padding-bottom: 1.5cm;
 }
-.key{
-	/*width: 200px;*/
-}
 .key img{
 	height: 100%;
 }
@@ -70,6 +67,6 @@
 		justify-content: center;
 	}
 	.title p{
-		font-size: 20px;
+		font-size: 15px;
 	}
 }

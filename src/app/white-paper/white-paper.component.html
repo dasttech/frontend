@@ -4,20 +4,25 @@
             <h2>WHITE PAPER</h2>
             <p>DIGITAL ACCESS SECURITY TOKEN</p>
         </div>
-        <br>
+        <br> 
         <div class="selection">
             <div class="introduction">
                 <div class="intro"><p>INTRODUCTION</p></div>
-                <div class=""><img src="{{plus}}" alt="plus-icon"></div>
+                <div class=""><img (click) = "introDisplay()" src="{{plus}}" alt="plus-icon"></div>
             </div>
+            <div [hidden] = "iDisplay" class="intro-display"><p>This div will display when I click on the plus-icon for introduction.</p></div>
+            
             <div class="tokenomics">
                 <div class="token"><p>TOKENOMICS</p></div>
-                <div class=""><img src="{{plus}}" alt="plus-icon"></div>
+                <div class=""><img (click) = "tokenDisplay()" src="{{plus}}" alt="plus-icon"></div>
             </div>
+            <div [hidden] = "tDisplay" class="token-display"><p>This div will display when I click on the plus-icon for tokenomic.</p></div>
+            
             <div class="burning-policy">
                 <div class="burning"><p>BURNING POLICY</p></div>
-                <div class=""><img src="{{plus}}" alt="plus-icon"></div>
+                <div class=""><img (click) = "burningDisplay()" src="{{plus}}" alt="plus-icon"></div>  
             </div>
+            <div [hidden] = "bDisplay" class="burning-display"><p>This div will display when I click on the plus-icon for introBurning policyduction.</p></div>
         </div>
     </div>
 </div>

@@ -8,15 +8,17 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   constructor() { }
+  menuVariable:boolean = false;
+  menu_icon_variable:boolean = false;
+  openMenu(){
+    this.menuVariable =! this.menuVariable;
+    this.menu_icon_variable =! this.menu_icon_variable;
+  }
 
   ngOnInit(): void {
   }
-<<<<<<< HEAD
   logo = 'assets/images/logo.png';
   twitter = 'assets/icons/twitter.png';
   telegram = 'assets/icons/telegram.png';
   rocket = 'assets/icons/rocket.png';
-=======
-
->>>>>>> 707151d64471775a22feaa2874c0b9a29114ecdd
 }

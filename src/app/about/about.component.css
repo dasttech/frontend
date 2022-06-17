@@ -16,11 +16,9 @@
 	font-weight: 200;
 	line-height: 150%;
 	font-size: 18px;
-	/*outline: 1px solid red;*/
 	width: 100%;
 }
 .image{
-	/*outline: 1px solid red;*/
 	width: 100%;
 }
 .image img{
@@ -36,12 +34,13 @@
 	.title{
 		flex-direction: column;
 		margin: auto;
-		font-size: 12px;
+		font-size: 15px;
 		text-align: center;
 		padding-top: 20px;
 	}
 	.image{
 		width: 100%;
+		margin-top: 4cm;
 		margin: auto;
 	}
 	.image img{
