@@ -7,6 +7,7 @@ import { SecurityComponent } from './app/security/security.component';
 import { VideoComponent } from './app/video/video.component';
 import { SaveAssetComponent } from './app/save-asset/save-asset.component';
 import { MainComponent } from './app/main/main.component';
+import { AccountComponent } from './app/account/account.component';
 
 
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'whitepaper', component: WhitePaperComponent},
   { path: 'video', component: VideoComponent},
   { path: 'saveAsset', component: SaveAssetComponent},
+  { path: 'account', component: AccountComponent},
 
 ];
 

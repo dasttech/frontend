@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConnectService } from '../connect.service';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  
+
+  constructor(
+    public connectService:ConnectService
+    ) { }
+
   menuVariable:boolean = false;
   menu_icon_variable:boolean = false;
   openMenu(){
@@ -21,4 +27,8 @@ export class HeaderComponent implements OnInit {
   twitter = 'assets/icons/twitter.png';
   telegram = 'assets/icons/telegram.png';
   rocket = 'assets/icons/rocket.png';
+
+ 
+
+  
 }

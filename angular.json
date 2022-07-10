@@ -7,7 +7,8 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
-          "strict": true
+          "strict": true,
+    "styleext": "scss"
         }
       },
       "root": "",
@@ -17,6 +18,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": ["node","@walletconnect","@walletconnect/web3-provider","web3","process","@metamask/providers"],
             "outputPath": "dist/dastfront",
             "index": "src/index.html",
             "main": "src/main.ts",

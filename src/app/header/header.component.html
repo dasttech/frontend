@@ -15,6 +15,7 @@
 							<ul>
 								 <li class="link1"><a routerLink="/about">About</a></li>
 								 <li class="link2"><a routerLink="/whitepaper">Whitepaper</a></li>
+								 <li class="link2"><a routerLink="/account">Account</a></li>
 								 <li class="link3"><a routerLink="/security">Security</a></li>
 								 <li class="link4"><a routerLink="/roadmap">Roadmap</a></li>
 								 <li class="link4"><a routerLink=""><img src="{{telegram}}"></a></li>
@@ -23,7 +24,8 @@
 						</div>
 
 						<div class="connectbtn">
-							<button><img src="{{rocket}}">Connect</button>
+							<button (click)="connectService.connect()"><img src="{{rocket}}">
+								{{connectService.isConnected?connectService.connectedAccount:"Connect"}}</button>
 						</div>
 					</div>
     </nav>
@@ -32,6 +34,7 @@
 				<ul>
 					<li class="link1"><a routerLink="/about">About</a></li>
 					<li class="link2"><a routerLink="/whitepaper">Whitepaper</a></li>
+					<li class="link2"><a routerLink="/account">Account</a></li>
 					<li class="link3"><a routerLink="/security">Security</a></li>
 					<li class="link4"><a routerLink="/roadmap">Roadmap</a></li>
 					<li class="link4"><a routerLink=""><img src="{{telegram}}"></a></li>
@@ -40,7 +43,7 @@
 			</div>
 
 			<div>
-				<button><img src="{{rocket}}">Connect</button>
+				<button><img src="{{rocket}}" (click)="connectService.connect()">{{connectService.isConnected?connectService.connectedAccount:"Connect"}}</button>
 			</div>
 		</div>
 </div>

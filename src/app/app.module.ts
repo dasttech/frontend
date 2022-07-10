@@ -17,6 +17,7 @@ import { RoutingComponents } from '../app-routing.module';
 import { MainComponent } from './main/main.component';
 import { ViewSavedAssetsComponent } from './view-saved-assets/view-saved-assets.component';
 import { RecoverAssetPageComponent } from './recover-asset-page/recover-asset-page.component';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { RecoverAssetPageComponent } from './recover-asset-page/recover-asset-pa
     RoutingComponents,
     MainComponent,
     ViewSavedAssetsComponent,
-    RecoverAssetPageComponent
+    RecoverAssetPageComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
