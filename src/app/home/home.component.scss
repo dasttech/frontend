@@ -2,10 +2,11 @@
 	display: flex;
 	flex-direction: row-reverse;
 	justify-content: center;
-	height: 10cm;
+	height: fit-content;
 	padding-top: 3.5cm;
 	color: #FFFFFF;
 	padding-bottom: 1.5cm;
+	// margin-top: 50px;
 }
 .key img{
 	height: 100%;

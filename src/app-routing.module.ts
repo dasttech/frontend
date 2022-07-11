@@ -8,6 +8,7 @@ import { VideoComponent } from './app/video/video.component';
 import { SaveAssetComponent } from './app/save-asset/save-asset.component';
 import { MainComponent } from './app/main/main.component';
 import { AccountComponent } from './app/account/account.component';
+import { AccountFormComponent } from './app/account/account-form/account-form.component';
 
 
 
@@ -20,6 +21,8 @@ const routes: Routes = [
   { path: 'video', component: VideoComponent},
   { path: 'saveAsset', component: SaveAssetComponent},
   { path: 'account', component: AccountComponent},
+  { path: 'account/form', component: AccountFormComponent},
+  
 
 ];
 

@@ -1,6 +1,6 @@
 <div class="navbar">
 	<nav>
-	        <div class="logo">
+	        <div class="logo pt-5">
 	        	<img src="{{logo}}" alt="logo">
 	            <h2 routerLink="">DAST</h2>
 	        </div>
@@ -47,3 +47,5 @@
 			</div>
 		</div>
 </div>
+<div id="liveAlertPlaceholder"></div>
+<app-loading *ngIf="connectService.showLoader"></app-loading>

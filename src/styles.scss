@@ -1,0 +1,41 @@
+/* You can add global styles to this file, and also import other style files */
+@import "/node_modules/bootstrap/scss/bootstrap.scss";
+body{
+	background: linear-gradient(122.8deg, #1D3062 14.84%, #3D272B 100%);
+}
+*{
+	margin: 0;
+}
+
+button{
+	padding: 10px;
+	border-radius: 1cm;
+	border: none;
+	background: #5758E0;
+	border: 2px solid #5758E0;
+	border-radius: 30px;
+	font-family: 'Inter';
+	font-size: 16px;
+	color: #FFFFFF;
+  }
+
+  #liveAlertPlaceholder{
+	position: fixed;
+	top: 20%;
+	right: 0%;
+	width: 40vw;
+	@media(max-width:767px){
+		width: 90vw;
+	}
+  }
+
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

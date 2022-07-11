@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -18,6 +19,10 @@ import { MainComponent } from './main/main.component';
 import { ViewSavedAssetsComponent } from './view-saved-assets/view-saved-assets.component';
 import { RecoverAssetPageComponent } from './recover-asset-page/recover-asset-page.component';
 import { AccountComponent } from './account/account.component';
+import { LoadingComponent } from './loading/loading.component';
+import { AccountDetailComponent } from './account/account-detail/account-detail.component';
+import { CreateAccountComponent } from './account/create-account/create-account.component';
+import { AccountFormComponent } from './account/account-form/account-form.component';
 
 @NgModule({
   declarations: [
@@ -36,11 +41,16 @@ import { AccountComponent } from './account/account.component';
     MainComponent,
     ViewSavedAssetsComponent,
     RecoverAssetPageComponent,
-    AccountComponent
+    AccountComponent,
+    LoadingComponent,
+    AccountDetailComponent,
+    CreateAccountComponent,
+    AccountFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

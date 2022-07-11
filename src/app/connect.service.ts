@@ -14,8 +14,9 @@ export class ConnectService {
   accounts:string[] = [];
   isConnected = false;
   connectedAccount = "";
+  showLoader = false;
 
-  web3:Web3 = new Web3('http://localhost:7545');
+  public web3:Web3 = new Web3('http://localhost:7545');
 
   provider:any;
 
@@ -74,7 +75,9 @@ async checkConnection(){
   }
 }
 
-
+togglerLoader(){
+  this.showLoader = !this.showLoader;
+}
    
 
 

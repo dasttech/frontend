@@ -1,0 +1,73 @@
+
+      
+            <div class="container-fluid mt-5">
+    <div class="row mt-5">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 mt-5 text-light">
+           
+            <form>
+                 <h1 class="display-2 font-weight-bold m-3 mb-5">Registration Form</h1>
+                 
+                <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <label >Full Name</label>
+                        <input type="text" name="fullname" [(ngModel)]="fullname" class="form-control " id="fullname" aria-describedby="emailHelp">
+                      </div>
+                      <div class="mb-3 col-md-6">
+                        <label >Email</label>
+                        <input type="email" name="email" [(ngModel)]="email"  class="form-control" id="email">
+                      </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <label >Country</label>
+                        <!-- <input type="text"> -->
+                        <select  name="country"  [(ngModel)]="country" [value]="country" class="form-control" id="country"  aria-describedby="emailHelp">
+
+                            <option  *ngFor="let country of countries.countries" [value]="country" >{{country[1]}}</option>
+                        </select>
+                      </div>
+
+                    <div class="mb-3 col-md-6">
+                        <label >Phone Number</label>
+                        <i><small class="text-danger"> Don't include country code</small></i>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">+{{country.length>0?countrycode:countries.countries[0][2]}}</span>
+                        <input type="number" maxlength="15" name="phone" [(ngModel)]="phone"  class="form-control" id="exampleInputPassword1">
+                      </div>
+                      </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <label >Residential Address</label>
+                        <input type="text" name="street_address" [(ngModel)]="street_address"  class="form-control"  id="address" aria-describedby="emailHelp">
+                      </div>
+                      <div class="mb-3 col-md-6">
+                        <label >Name of Next of Kin</label>
+                        <input type="text" name="next_of_kin" [(ngModel)]="next_of_kin"  class="form-control" id="nextofkin" ngDefaultControl>
+                      </div>
+                </div>
+                
+                <div class="row">
+                      <div class="mb-3 col-md-6">
+                        <label >Nex of Kin Phone Number</label>
+                        <i><small class="text-danger"> Don't include country code</small></i>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">+{{country.length>0?countrycode:countries.countries[0][2]}}</span>
+                        <input type="number" maxlength="15" name="next_of_kin_phone" [(ngModel)]="next_of_kin_phone"  class="form-control" id="exampleInputPassword1">
+                      </div>
+                      </div>
+                      <div class="mb-3 col-md-6">
+                        <label >Nex of Kin Email</label>
+                        <input type="email" name="next_of_kin_email" [(ngModel)]="next_of_kin_email"  class="form-control" id="nextofkinemail">
+                      </div>
+                </div>
+              <div class="row">
+                <div class="col-12 text-center">
+                    <button type="button"   class="btn btn-primary w-50 mt-5" (click)="createAccount()">Submit</button>
+                </div>
+              </div>
+              </form>
+        </div>
+    </div>
+</div>
