@@ -9,6 +9,7 @@ import { SaveAssetComponent } from './app/save-asset/save-asset.component';
 import { MainComponent } from './app/main/main.component';
 import { AccountComponent } from './app/account/account.component';
 import { AccountFormComponent } from './app/account/account-form/account-form.component';
+import { IsConnectedGuard } from './app/guards/is-connected.guard';
 
 
 
@@ -20,8 +21,8 @@ const routes: Routes = [
   { path: 'whitepaper', component: WhitePaperComponent},
   { path: 'video', component: VideoComponent},
   { path: 'saveAsset', component: SaveAssetComponent},
-  { path: 'account', component: AccountComponent},
-  { path: 'account/form', component: AccountFormComponent},
+  { path: 'account', component: AccountComponent,canActivate:[IsConnectedGuard]},
+  { path: 'account/form', component: AccountFormComponent,canActivate:[IsConnectedGuard]},
   
 
 ];

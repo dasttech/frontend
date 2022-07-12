@@ -24,7 +24,7 @@ export class AlertService {
     setTimeout(()=>{
       const close = document.querySelector(".btn-close") as HTMLElement;
       if(close){close.click()}
-    },2000)
+    },3000)
   }
 }
 

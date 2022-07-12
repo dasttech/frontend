@@ -1,5 +1,7 @@
+
 export class User {
-   
+    static connectService: any
+
     constructor(
         public id:string,
         public wallet_addr:string,
@@ -13,5 +15,8 @@ export class User {
         public next_of_kin_phone:string,
         public next_of_kin_email:string, 
         public others:string
-    ){}
+    ){
+    }
+
+   
 }

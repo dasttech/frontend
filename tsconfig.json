@@ -2,6 +2,8 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
     "allowJs":true,    
     "paths": {
       "crypto": ["./node_modules/crypto-browserify"],

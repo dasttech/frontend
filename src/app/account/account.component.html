@@ -1,7 +1,5 @@
 
-            <div class="loading" *ngIf="!isloaded">
-                <app-loading ></app-loading>
-            </div>
+            
             <app-create-account *ngIf="isloaded && myAccount.fullname==''"></app-create-account>
             <app-security *ngIf="isloaded && myAccount.fullname!=''"></app-security>
 

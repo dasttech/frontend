@@ -24,7 +24,7 @@
 						</div>
 
 						<div class="connectbtn">
-							<button (click)="connectService.connect()"><img src="{{rocket}}">
+							<button (click)="connectService.checkConnection()"><img src="{{rocket}}">
 								{{connectService.isConnected?connectService.connectedAccount:"Connect"}}</button>
 						</div>
 					</div>
@@ -43,9 +43,9 @@
 			</div>
 
 			<div>
-				<button><img src="{{rocket}}" (click)="connectService.connect()">{{connectService.isConnected?connectService.connectedAccount:"Connect"}}</button>
+				<button><img src="{{rocket}}" (click)="connectService.checkConnection()">{{connectService.isConnected?connectService.connectedAccount:"Connect"}}</button>
 			</div>
 		</div>
 </div>
 <div id="liveAlertPlaceholder"></div>
-<app-loading *ngIf="connectService.showLoader"></app-loading>
+<app-loading ></app-loading>
