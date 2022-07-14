@@ -1,8 +1,9 @@
-.footer-controller{
+.main{
   display: flex;
   justify-content: center;
   padding: 80px;
   color: white;
+  background: linear-gradient(122.8deg, #1D3062 14.84%, #3D272B 100%);
   font-family: 'Inter';
 }
 .footer{
@@ -12,7 +13,7 @@
 }
 .icons{
   display: flex;
-  justify-content: center;
+  align-items: flex-start;
   gap: 20px;
 }
 .container1,
@@ -34,12 +35,15 @@
 }
 
 @media screen and (max-width: 700px) {
-  .footer-controller{
+  .main{
     padding-top: 2cm;
     padding: 0px;
     text-align: center;
     font-size: 15px;
     margin: auto;
+  }
+  .icons{
+    justify-content: center;
   }
   .footer{
     display: flex;

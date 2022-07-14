@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewSavedAssetsComponent } from './view-saved-assets.component';
+import { RecoverAssetComponent } from './recover-asset.component';
 
-describe('ViewSavedAssetsComponent', () => {
-  let component: ViewSavedAssetsComponent;
-  let fixture: ComponentFixture<ViewSavedAssetsComponent>;
+describe('RecoverAssetComponent', () => {
+  let component: RecoverAssetComponent;
+  let fixture: ComponentFixture<RecoverAssetComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ViewSavedAssetsComponent ]
+      declarations: [ RecoverAssetComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewSavedAssetsComponent);
+    fixture = TestBed.createComponent(RecoverAssetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

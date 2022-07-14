@@ -1,0 +1,50 @@
+.main{
+    width: 600px;
+}
+.cover{
+    font-family: 'Inter';
+    width: 600px;
+}
+.line{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1cm;
+    margin-top: 0.5cm;
+}
+p{
+    border-bottom: 1px solid #ffffff;
+    height: 28px;
+}
+input{
+    width: 280px;
+    height: 40px;
+    border-radius: 4px;
+    border: none;
+}
+.save-btn{
+    width: 98%;
+    padding: 10px;
+	border-radius: 4px;
+	border: none;
+	background: #5758E0;
+	border: 2px solid #5758E0;
+	font-family: 'Inter';
+	font-size: 16px;
+	color: #FFFFFF;
+}
+
+
+@media screen and (max-width: 600px) {
+    .main{
+        font-size: 15px;
+        width: 97%;
+        padding: 8px;
+    }
+    .cover{
+        width: 95%;
+        padding-left: 5px;
+    }
+    .line{
+        flex-direction: column;
+    }
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-strategy',
@@ -10,8 +11,9 @@ export class StrategyComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    AOS.init();
   }
- 
+
   strategy = 'assets/icons/strategy.png';
   ideology = 'assets/icons/ideology.png';
   main = 'assets/images/ideology image.png';

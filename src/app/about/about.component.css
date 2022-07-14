@@ -1,8 +1,12 @@
 .container4{
 	padding: 120px;
+	background: linear-gradient(122.8deg, #1D3062 14.84%, #3D272B 100%);
+}
+.main{
+	margin-top: 1.5cm;
+	margin-bottom: 1.5cm;
 	display: flex;
 	justify-content: space-around;
-	background: linear-gradient(122.8deg, #1D3062 14.84%, #3D272B 100%);
 }
 .title{
 	margin-left: 20px;
@@ -30,6 +34,9 @@
 	.container4{
 		flex-direction: column;
 		padding: 20px;
+	}
+	.main{
+		flex-direction: column;
 	}
 	.title{
 		flex-direction: column;

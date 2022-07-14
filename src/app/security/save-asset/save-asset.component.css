@@ -7,12 +7,13 @@
     align-items: center;
     color: #fff;
     font-family: 'Inter';
+    background: linear-gradient(122.8deg, #1D3062 14.84%, #3D272B 100%);
 }
 .cover{
     display: flex;
     flex-direction: column;
     gap: 30px;
-    width: 400px;
+    /* width: 400px; */
     justify-content: center;
 }
 .cover input{
@@ -24,66 +25,41 @@
 .details-btn{
 	padding: 10px;
 	border-radius: 40px;
+  background: transparent;
 	border: none;
-	background: #5758E0;
 	border: 2px solid #5758E0;
 	font-family: 'Inter';
 	font-size: 16px;
 	color: #FFFFFF;
 }
 .other-btn{
-    padding: 10px;
+  padding: 10px;
 	border-radius: 40px;
-	border: none; 
-    background: transparent;
+	border: none;
+  background: transparent;
 	border: 2px solid #5758E0;
 	font-family: 'Inter';
 	font-size: 16px;
 	color: #FFFFFF;
-}
-label{
-    font-size: 13px;
 }
 .top-btn{
     display: flex;
     justify-content: space-evenly;
 }
-.continue-btn{
-    width: 98%;
-    padding: 10px;
-	border-radius: 4px;
-	border: none;
-	background: #5758E0;
-	border: 2px solid #5758E0;
-	font-family: 'Inter';
-	font-size: 16px;
-	color: #FFFFFF;
+
+.active{
+    color: white;
+    background: #5758E0;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
     .main{
-        font-size: 20px;
+        font-size: 15px;
     }
     .cover{
         width: 100%;
-        /* outline: 2px solid yellow; */
     }
-    .cover input{
-        width: 300px;
-        margin: auto;
-    }
-    .cover button{
-        font-size: 13px;
-    }
-    form{
-        /* outline: 1px solid red; */
-        /* margin: auto; */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .continue-btn{
-        width: 300px;
+    .details-btn, .other-btn{
+        font-size: 14px;
     }
 }

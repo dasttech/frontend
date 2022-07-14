@@ -5,7 +5,7 @@ nav{
     display: flex;
     flex-direction: row;
     flex: 1 1 auto;
-    z-index: 10;
+    z-index: 99999999999;
     justify-content: space-evenly;
     color: white;
     position: absolute;
@@ -30,6 +30,7 @@ nav{
   position: fixed;
   background: rgba(35, 46, 87, 0.8);
   backdrop-filter: blur(12.1935px);
+  z-index: 99999;
 }
 .mobile-nav li{
   list-style: none;
@@ -58,6 +59,7 @@ nav{
   	font-family: 'Inter';
   	font-style: normal;
   	gap: 10px;
+    cursor: pointer;
 }
 
 /* Styling Navigation Links*/
@@ -93,10 +95,12 @@ nav{
     padding: 20px;
     display: inline;
 }
-
-.nav-links li a:hover::before{
-    width: 80%;
+.nav-links li a:hover{
+  color: #5758E0;
 }
+/* .nav-links li a:hover::before{
+    width: 80%;
+} */
 
 
 /*Navigation Icon Styling*/
@@ -140,10 +144,10 @@ button{
 	color: #FFFFFF;
 	align-items: flex-start;
 	background: none;
+  cursor: pointer;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
 	.logo{
-		/*top: 90%;*/
 		padding-top: 25px;
 	}
 	.nav-links{

@@ -11,12 +11,14 @@ import { HeaderComponent } from './header/header.component';
 import { StrategyComponent } from './strategy/strategy.component';
 import { FooterComponent } from './footer/footer.component';
 // import { SecurityComponent } from './security/security.component';
-// import { SaveAssetComponent } from './save-asset/save-asset.component';
+import { SaveAssetComponent } from './security/save-asset/save-asset.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { RoutingComponents } from '../app-routing.module';
 import { MainComponent } from './main/main.component';
-import { ViewSavedAssetsComponent } from './view-saved-assets/view-saved-assets.component';
-import { RecoverAssetPageComponent } from './recover-asset-page/recover-asset-page.component';
+import { OtherDetailsComponent } from './security/other-details/other-details.component';
+import { AssetDetailsComponent } from './security/asset-details/asset-details.component';
+import { SecurityRoutingModule } from './security/security-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -30,15 +32,17 @@ import { RecoverAssetPageComponent } from './recover-asset-page/recover-asset-pa
     StrategyComponent,
     FooterComponent,
     // SecurityComponent,
-    // SaveAssetComponent,
+    SaveAssetComponent,
     RoutingComponents,
     MainComponent,
-    ViewSavedAssetsComponent,
-    RecoverAssetPageComponent
+    OtherDetailsComponent,
+    AssetDetailsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SecurityRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
 .white-paper-controller{
+  background: linear-gradient(122.8deg, #1D3062 14.84%, #3D272B 100%);
   padding: 50px;
 }
 .main{
@@ -6,7 +7,8 @@
   flex-direction: column;
   color: white;
   font-family: 'Inter';
-  margin-top: 20px;
+  margin-top: 1.5cm;
+  margin-bottom: 2cm;
   padding-top: 25px;
 }
 .main .title{

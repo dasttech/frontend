@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RecoverAssetPageComponent } from './recover-asset-page.component';
+import { OtherDetailsComponent } from './other-details.component';
 
-describe('RecoverAssetPageComponent', () => {
-  let component: RecoverAssetPageComponent;
-  let fixture: ComponentFixture<RecoverAssetPageComponent>;
+describe('OtherDetailsComponent', () => {
+  let component: OtherDetailsComponent;
+  let fixture: ComponentFixture<OtherDetailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RecoverAssetPageComponent ]
+      declarations: [ OtherDetailsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RecoverAssetPageComponent);
+    fixture = TestBed.createComponent(OtherDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

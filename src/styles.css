@@ -1,7 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-body{
+/* body{
 	background: linear-gradient(122.8deg, #1D3062 14.84%, #3D272B 100%);
-}
+} */
 *{
 	margin: 0;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
