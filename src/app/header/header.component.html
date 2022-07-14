@@ -19,7 +19,8 @@
 								 <li class="link3"><a routerLink="/security">Security</a></li>
 								 <li class="link4"><a routerLink="/roadmap">Roadmap</a></li>
 								 <li class="link4"><a routerLink=""><img src="{{telegram}}"></a></li>
-								 <li class="link4"><a routerLink=""><img src="{{twitter}}"></a></li>
+								 <li class="link4"><a routerLink=""><img src="{{twitter}}"></a></li>								 
+								 <li class="link4"><a routerLink="/profile">Profile</a></li>
 							</ul>
 						</div>
 
@@ -37,13 +38,17 @@
 					<li class="link2"><a routerLink="/account">Account</a></li>
 					<li class="link3"><a routerLink="/security">Security</a></li>
 					<li class="link4"><a routerLink="/roadmap">Roadmap</a></li>
-					<li class="link4"><a routerLink=""><img src="{{telegram}}"></a></li>
-					<li class="link4"><a routerLink=""><img src="{{twitter}}"></a></li>
+					<li class="link4">
+						<a routerLink="" class="mr-5"><img src="{{telegram}}"></a>
+						&nbsp;&nbsp;
+						<a routerLink=""><img src="{{twitter}}"></a></li>
+					<li class="link4"><a routerLink="/profile">Profile</a></li>
 				</ul>
 			</div>
 
-			<div>
-				<button><img src="{{rocket}}" (click)="connectService.checkConnection()">{{connectService.isConnected?connectService.connectedAccount:"Connect"}}</button>
+			<div class="connectbtn">
+				<button (click)="connectService.checkConnection()"><img src="{{rocket}}">
+					{{connectService.isConnected?connectService.connectedAccount:"Connect"}}</button>
 			</div>
 		</div>
 </div>

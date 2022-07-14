@@ -1,13 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { timingSafeEqual } from 'crypto';
-import { AlertService } from 'src/app/alert.service';
-import { ConnectService } from 'src/app/connect.service';
-import { CountriesService } from 'src/app/countries.service';
+import { AlertService } from 'src/app/services/alert.service';
+import { ConnectService } from 'src/app/services/connect.service';
+import { CountriesService } from 'src/app/services/countries.service';
 import { User } from 'src/app/models/user';
 import Users from "artifacts/contracts/Users/Users.sol/Users.json"
 import Auth from "artifacts/contracts/Auth/Auth.sol/Auth.json"
 import { AbiItem } from 'web3-utils';
 import { LoadServiceService } from 'src/app/loading/load-service.service';
+import { WelcomeMessage } from 'src/app/models/welcome-message';
+import { MessageService } from 'src/app/services/message.service';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-account-form',
@@ -28,12 +31,14 @@ export class AccountFormComponent implements OnInit {
         next_of_kin_phone:string = "";
         next_of_kin_email:string = "";
         other:string = "{}";
+        welcomeMessage:WelcomeMessage = new WelcomeMessage(this.email);
 
   constructor(
     public connectService:ConnectService,
     public alertService: AlertService,
     public countries:CountriesService,
-    public loadService:LoadServiceService  
+    public loadService:LoadServiceService,  
+    private message:MessageService
     ) { 
     }
 
@@ -86,6 +91,14 @@ export class AccountFormComponent implements OnInit {
     this.alertService.alert("Account created successfully",
       "Success");
     this.loadService.hideLoader();
+    const sendmail = this.message.sendWelcome(this.welcomeMessage);
+    from(sendmail).subscribe(
+      {next:data=>{
+      },
+        error:(data)=>{ 
+        this.alertService.alert(data.error.message,"danger")
+      }}
+      );
    }
    else{
     this.alertService.alert("Account creation failed",

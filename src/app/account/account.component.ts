@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { id } from 'ethers/lib/utils';
-import { AlertService } from '../alert.service';
-import { ConnectService } from '../connect.service';
+import { AlertService } from '../services/alert.service';
+import { ConnectService } from '../services/connect.service';
 import { LoadServiceService } from '../loading/load-service.service';
 import { User } from '../models/user';
 
@@ -50,7 +50,7 @@ export class AccountComponent implements OnInit {
     }).catch((err:Error)=>{
       this.isloaded = true;
       this.loadService.hideLoader();
-        this.alertService.alert("Welcome to DAST, create account","info");
+        this.alertService.alert("Welcome to DAST, create account new account","info");
     });
   }
   

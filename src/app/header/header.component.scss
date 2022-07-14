@@ -26,7 +26,7 @@ nav{
   text-align: center;
   color: white;
   position: absolute;
-  width: 100%;
+  width: 100vw;
   position: fixed;
   background: rgba(35, 46, 87, 0.8);
   backdrop-filter: blur(12.1935px);
@@ -34,7 +34,7 @@ nav{
 }
 .mobile-nav li{
   list-style: none;
-  margin-top: 1cm;
+  margin-top:0.5cm;
   padding: 0;
 }
 .mobile-nav a{

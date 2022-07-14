@@ -77,12 +77,17 @@
 				},
 				"serve": {
 					"builder": "@angular-devkit/build-angular:dev-server",
+					"options": {
+						"browserTarget": "dastfront:build:development",
+						"proxyConfig": "src/proxy.conf.json"
+					  },
 					"configurations": {
 						"production": {
 							"browserTarget": "dastfront:build:production"
 						},
 						"development": {
-							"browserTarget": "dastfront:build:development"
+							"browserTarget": "dastfront:build:development",
+							"proxyConfig": "src/proxy.conf.json"
 						}
 					},
 					"defaultConfiguration": "development"

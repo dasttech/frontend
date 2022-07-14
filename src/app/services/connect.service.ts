@@ -10,6 +10,7 @@ import Auth from "artifacts/contracts/Auth/Auth.sol/Auth.json"
 import { AlertService } from './alert.service';
 import { AbiItem } from 'web3-utils';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,6 +28,10 @@ export class ConnectService {
     usersAbi: Users.abi as AbiItem[],
     AuthAbi : Auth.abi as AbiItem[],
     chainId:3,
+
+    apiUrl:"http://localhost:8000/api/sendmail",
+    emailBanner:"",
+    apiToken:"H6JK5XKdcTOZZqVHvHZaOog2mGqXwEq56"
 
   }
 
@@ -48,13 +53,14 @@ export class ConnectService {
         // },
         package: WalletConnectProvider,
         options: {
-          infuraId:"eiieiei",
-          // rpc: {
-          //   1: "https://mainnet.mycustomnode.com",
-          //   3: "https://ropsten.mycustomnode.com",
-          //   100: "https://dai.poa.network",
-          //   // ...
-          // },
+          infuraId:"01cee0da686f45b284603965699bac60",
+          rpc: {
+            1: "https://mainnet.infura.io/v3/01cee0da686f45b284603965699bac60",
+            3: "https://ropsten.infura.io/v3/01cee0da686f45b284603965699bac60",
+            100: "https://dai.poa.network",
+            56: "https://bsc-dataseed.binance.org/",
+            97: "https://data-seed-prebsc-1-s1.binance.org:8545/"
+          },
         }
       
       },
@@ -83,22 +89,9 @@ export class ConnectService {
       const chainId = await this.web3.eth.net.getId();
   
       if(chainId!==this.creds.chainId){
-        await this.swichNetwork(this.creds.chainId)
-       .then(async res=>{
-        if(res.code&&res.code=="4902"){
-          this.alertService.alert("Your network is not supported. Try connecting to BSC network","danger");
-          this.web3 = new Web3();
-        }
-        else{
-       provider = await web3Modal.connect();
-       this.web3 = new Web3(provider);
-        // this.web3 = web3;
-        // return web3;
-        }
-       }).catch(e=>{
-        this.alertService.alert(e.message,"danger")
-        this.web3 =  new Web3();
-       })
+        
+        await provider.disconnect()
+        this.alertService.alert("Unsupported network", "danger");
       
       }
       else {
@@ -134,6 +127,7 @@ async checkConnection(){
   await this.connect();
  this.accounts =await this.web3.eth.getAccounts();
  } catch (error) {
+  console.log(error)
   this.alertService.alert("Something went wrong","danger")
  }
  if(this.accounts.length>0){
@@ -151,19 +145,5 @@ togglerLoader(){
 }
 
 
-//Switch network
-swichNetwork = async (chainId:any) => {
-
-  
-    try {
-      await window.ethereum.request({
-        method: 'wallet_switchEthereumChain',
-          params: [{ chainId: Web3.utils.toHex(chainId) }],
-        })
-    } catch (switchError:any) {
-      return switchError
-    
-    }
-}
 
 }
