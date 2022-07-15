@@ -31,7 +31,7 @@ export class ConnectService {
     emailBanner:"",
     apiToken:"H6JK5XKdcTOZZqVHvHZaOog2mGqXwEq5",
 
-    infuraId:"",
+    infuraId: "",
 
 
   }
