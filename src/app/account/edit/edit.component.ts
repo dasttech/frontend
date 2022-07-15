@@ -1,50 +1,60 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { timingSafeEqual } from 'crypto';
+import { Component, OnInit } from '@angular/core';
+import { from } from 'rxjs';
+import { LoadServiceService } from 'src/app/loading/load-service.service';
+import { User } from 'src/app/models/user';
+import { WelcomeMessage } from 'src/app/models/welcome-message';
 import { AlertService } from 'src/app/services/alert.service';
 import { ConnectService } from 'src/app/services/connect.service';
 import { CountriesService } from 'src/app/services/countries.service';
-import { User } from 'src/app/models/user';
-import Users from "artifacts/contracts/Users/Users.sol/Users.json"
-import Auth from "artifacts/contracts/Auth/Auth.sol/Auth.json"
-import { AbiItem } from 'web3-utils';
-import { LoadServiceService } from 'src/app/loading/load-service.service';
-import { WelcomeMessage } from 'src/app/models/welcome-message';
 import { MessageService } from 'src/app/services/message.service';
-import { from } from 'rxjs';
+import { AccountComponent } from '../account.component';
+import { AccountService } from '../account.service';
 
 @Component({
-  selector: 'app-account-form',
-  templateUrl: './account-form.component.html',
-  styleUrls: ['./account-form.component.scss']
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.scss']
 })
-export class AccountFormComponent implements OnInit {
-
-        id:string = "";
-        wallet_addr:string = "";
-        fullname:string = "";
-        avatar:string = "";
-        email:string = "";
-        phone:string = "";
-        country:string = "";
-        street_address:string = "";
-        next_of_kin:string = "";
-        next_of_kin_phone:string = "";
-        next_of_kin_email:string = "";
-        others:string = "{}";
-        welcomeMessage:WelcomeMessage = new WelcomeMessage(this.email);
+export class EditComponent implements OnInit {
+  id:string = "";
+  wallet_addr:string = "";
+  fullname:string = "";
+  avatar:string = "";
+  email:string = "";
+  phone:string = "";
+  country:string = "";
+  street_address:string = "";
+  next_of_kin:string = "";
+  next_of_kin_phone:string = "";
+  next_of_kin_email:string = "";
+  others:string = "{}";
+  welcomeMessage:WelcomeMessage = new WelcomeMessage(this.email,"Account update","",this.fullname,"Your account was updated");
 
   constructor(
+    private accountService:AccountService,
     public connectService:ConnectService,
     public alertService: AlertService,
     public countries:CountriesService,
     public loadService:LoadServiceService,  
     private message:MessageService
-    ) { 
-    }
+  ) { }
 
   ngOnInit(): void {
-  }
 
+    this.id = this.accountService.getUser.id;
+    this.wallet_addr = this.accountService.getUser.wallet_addr;
+    this.fullname = this.accountService.getUser.fullname;
+    this.avatar = this.accountService.getUser.avatar;
+    this.email = this.accountService.getUser.email;
+    this.phone = this.accountService.getUser.phone;
+    this.country = this.accountService.getUser.country;
+    this.street_address = this.accountService.getUser.street_address;
+    this.next_of_kin = this.accountService.getUser.next_of_kin;
+    this.next_of_kin_phone = this.accountService.getUser.next_of_kin_phone;
+    this.next_of_kin_email = this.accountService.getUser.next_of_kin_email;
+    this.others = this.accountService.getUser.others;
+
+  }
   get countrycode(){
     return this.country.split(",",3)[2]
   }
@@ -54,7 +64,9 @@ export class AccountFormComponent implements OnInit {
 
   }
 
-  async createAccount(){
+  get getUser (){ return this.accountService.getUser;}
+
+  async updateAccount(){
     if(this.fullname==""){this.alertService.alert("Enter full name", "danger"); return}
     if(this.email==""){this.alertService.alert("Enter your email address", "danger"); return}
     if(this.country==""){this.alertService.alert("Choose country", "danger"); return}
@@ -63,13 +75,12 @@ export class AccountFormComponent implements OnInit {
     if(this.next_of_kin==""){this.alertService.alert("Nexf of Kin name", "danger"); return}
     if(this.next_of_kin_phone==""){this.alertService.alert("Enter next of Kin phone number", "danger");return;}
     if(this.next_of_kin_email==""){this.alertService.alert("Enter of kin email address", "danger");return;}
-
     this.loadService.Loader()
     const web3 = await this.connectService.checkConnection();
-    const newUser = new this.connectService.web3.eth.Contract(this.connectService.getCreds.usersAbi,this.connectService.getCreds.users)
-    const accounts = await  this.connectService.web3.eth.getAccounts()
-
-   try{await newUser.methods.createAccount(
+    const editedUser = new this.connectService.web3.eth.Contract(this.connectService.getCreds.usersAbi,this.connectService.getCreds.users)
+    const accounts = await  this.connectService.web3.eth.getAccounts();
+   try{
+    await editedUser.methods.editAccount(
         this.connectService.getCreds.platformToken,
        
          [
@@ -85,11 +96,13 @@ export class AccountFormComponent implements OnInit {
         this.next_of_kin_phone.toString(),
         this.next_of_kin_email,
         this.others,
-         ]).send({from: accounts[0]})
+         ]
+      
+      ).send({from: accounts[0]})
   .then(
   async(res:any)=>{
    if(res.status){
-    this.alertService.alert("Account created successfully",
+    this.alertService.alert("Account updated successfully",
       "Success");
     this.loadService.hideLoader();
     const sendmail = this.message.sendWelcome(this.welcomeMessage);
@@ -102,7 +115,7 @@ export class AccountFormComponent implements OnInit {
       );
    }
    else{
-    this.alertService.alert("Account creation failed",
+    this.alertService.alert("Account updated failed",
       "danger");
     this.loadService.hideLoader();
    }
@@ -113,17 +126,16 @@ export class AccountFormComponent implements OnInit {
   
  
 }catch (e: any) { 
-  e.message 
   if (typeof e === "string") {
     
     this.alertService.alert(e,"danger");
     this.loadService.hideLoader();
-  } else if (e instanceof Error) {
+  } else if (e) {
     this.alertService.alert(e.message,"danger");
     this.loadService.hideLoader();
   }
 }
-// 
+// // 
   }
 
 }

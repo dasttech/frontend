@@ -15,12 +15,11 @@
 							<ul>
 								 <li class="link1"><a routerLink="/about">About</a></li>
 								 <li class="link2"><a routerLink="/whitepaper">Whitepaper</a></li>
-								 <li class="link2"><a routerLink="/account">Account</a></li>
-								 <li class="link3"><a routerLink="/security">Security</a></li>
+								 <li class="link2"><a routerLink="/account"  *ngIf="getIsConnected">Account</a></li>
 								 <li class="link4"><a routerLink="/roadmap">Roadmap</a></li>
 								 <li class="link4"><a routerLink=""><img src="{{telegram}}"></a></li>
 								 <li class="link4"><a routerLink=""><img src="{{twitter}}"></a></li>								 
-								 <li class="link4"><a routerLink="/profile">Profile</a></li>
+								 <li class="link4"><a routerLink="account/profile"  *ngIf="getIsLoaded">Profile</a></li>
 							</ul>
 						</div>
 
@@ -35,14 +34,13 @@
 				<ul>
 					<li class="link1"><a routerLink="/about">About</a></li>
 					<li class="link2"><a routerLink="/whitepaper">Whitepaper</a></li>
-					<li class="link2"><a routerLink="/account">Account</a></li>
-					<li class="link3"><a routerLink="/security">Security</a></li>
+					<li class="link2"><a routerLink="/account"  *ngIf="getIsLoaded">Account</a></li>
 					<li class="link4"><a routerLink="/roadmap">Roadmap</a></li>
 					<li class="link4">
 						<a routerLink="" class="mr-5"><img src="{{telegram}}"></a>
 						&nbsp;&nbsp;
 						<a routerLink=""><img src="{{twitter}}"></a></li>
-					<li class="link4"><a routerLink="/profile">Profile</a></li>
+					<li class="link4" *ngIf="getIsLoaded"><a routerLink="account/profile">Profile</a></li>
 				</ul>
 			</div>
 

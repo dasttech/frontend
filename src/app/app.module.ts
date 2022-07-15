@@ -24,6 +24,8 @@ import { LoadingComponent } from './loading/loading.component';
 import { AccountDetailComponent } from './account/account-detail/account-detail.component';
 import { CreateAccountComponent } from './account/create-account/create-account.component';
 import { AccountFormComponent } from './account/account-form/account-form.component';
+import { ProfileComponent } from './account/profile/profile.component';
+import { EditComponent } from './account/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { AccountFormComponent } from './account/account-form/account-form.compon
     LoadingComponent,
     AccountDetailComponent,
     CreateAccountComponent,
-    AccountFormComponent
+    AccountFormComponent,
+    ProfileComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import WalletConnect from "@walletconnect/client";
 import QRCodeModal from "@walletconnect/qrcode-modal";
 import WalletConnectProvider from '@walletconnect/web3-provider';
-import CoinbaseWalletSDK from "@coinbase/wallet-sdk";
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 import Users from "artifacts/contracts/Users/Users.sol/Users.json"
@@ -31,7 +29,10 @@ export class ConnectService {
 
     apiUrl:"http://localhost:8000/api/sendmail",
     emailBanner:"",
-    apiToken:"H6JK5XKdcTOZZqVHvHZaOog2mGqXwEq56"
+    apiToken:"H6JK5XKdcTOZZqVHvHZaOog2mGqXwEq5",
+
+    infuraId:"",
+
 
   }
 
@@ -53,24 +54,15 @@ export class ConnectService {
         // },
         package: WalletConnectProvider,
         options: {
-          infuraId:"01cee0da686f45b284603965699bac60",
+          infuraId:this.getCreds.infuraId,
           rpc: {
-            1: "https://mainnet.infura.io/v3/01cee0da686f45b284603965699bac60",
-            3: "https://ropsten.infura.io/v3/01cee0da686f45b284603965699bac60",
-            100: "https://dai.poa.network",
-            56: "https://bsc-dataseed.binance.org/",
-            97: "https://data-seed-prebsc-1-s1.binance.org:8545/"
+            1: `https://mainnet.infura.io/v3/${this.getCreds.infuraId}`,
+            3: `https://ropsten.infura.io/v3/${this.getCreds.infuraId}`,
+            100: `https://dai.poa.network`,
+            56: `https://bsc-dataseed.binance.org/`,
+            97: `https://data-seed-prebsc-1-s1.binance.org:8545/`
           },
         }
-      
-      },
-      coinbasewallet: {
-        package: CoinbaseWalletSDK, 
-        options: {
-          appName: "Web 3 Modal Demo",
-          infuraId: "process.env.INFURA_KEY "
-        },
-        
       
       }
      

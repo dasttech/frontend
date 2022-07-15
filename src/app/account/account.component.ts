@@ -4,6 +4,7 @@ import { AlertService } from '../services/alert.service';
 import { ConnectService } from '../services/connect.service';
 import { LoadServiceService } from '../loading/load-service.service';
 import { User } from '../models/user';
+import { AccountService } from './account.service';
 
 @Component({
   selector: 'app-account',
@@ -17,18 +18,26 @@ export class AccountComponent implements OnInit {
   constructor(
     private connectService:ConnectService,
     private loadService:LoadServiceService,
-    private alertService:AlertService
+    private accountService:AccountService
     ) { 
     this.loadService.Loader();
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {{
         this.loadService.changeMessage("Fetching user data");
-    setInterval(async () => {
-      if(!this.isloaded&&this.connectService.isConnected){
-        await this.fetchUserData(this.connectService.getCreds.platformToken);         
+    setTimeout(async () => {
+      if(!this.accountService.isloaded&&this.connectService.isConnected){
+        await this.accountService.fetchUserData(this.connectService.getCreds.platformToken);
+       this.myAccount = this.accountService.getUser; 
+       this.isloaded = this.accountService.isloaded;   
+       console.log(this.myAccount);
+      }else{
+        this.isloaded = this.accountService.isloaded;
+        this.myAccount = this.accountService.getUser;
+        this.loadService.hideLoader();
+       console.log(this.myAccount);
       }
-    }, 2000);
+    }, 0);}
     
   }
   
@@ -36,23 +45,5 @@ export class AccountComponent implements OnInit {
     this.loadService.hideLoader();
   }
 
-  get isAccountCreated(){
-    return this.myAccount.fullname;
-  }
-
-  async fetchUserData(platformToken:string){
-    const web3 = await this.connectService.checkConnection();
-    const newUser = new this.connectService.web3.eth.Contract(this.connectService.getCreds.usersAbi,this.connectService.getCreds.users)
-    await newUser.methods.fetchUserData(platformToken).call({from:this.connectService.accounts[0]}).then((data:User)=>{
-      this.isloaded = true;
-      this.loadService.hideLoader();
-      this.myAccount = data;
-    }).catch((err:Error)=>{
-      this.isloaded = true;
-      this.loadService.hideLoader();
-        this.alertService.alert("Welcome to DAST, create account new account","info");
-    });
-  }
-  
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from '../account/account.service';
 import { ConnectService } from '../services/connect.service';
 
 @Component({
@@ -11,7 +12,8 @@ export class HeaderComponent implements OnInit {
   
 
   constructor(
-    public connectService:ConnectService
+    public connectService:ConnectService,
+    private accountService:AccountService
     ) { }
 
   menuVariable:boolean = false;
@@ -19,6 +21,13 @@ export class HeaderComponent implements OnInit {
   openMenu(){
     this.menuVariable =! this.menuVariable;
     this.menu_icon_variable =! this.menu_icon_variable;
+  }
+
+  get getIsLoaded(){
+    return this.accountService.isloaded;
+  }
+  get getIsConnected(){
+    return this.connectService.isConnected;
   }
 
   ngOnInit(): void {

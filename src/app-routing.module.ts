@@ -10,6 +10,8 @@ import { MainComponent } from './app/main/main.component';
 import { AccountComponent } from './app/account/account.component';
 import { AccountFormComponent } from './app/account/account-form/account-form.component';
 import { IsConnectedGuard } from './app/guards/is-connected.guard';
+import { ProfileComponent } from './app/account/profile/profile.component';
+import { EditComponent } from './app/account/edit/edit.component';
 
 
 
@@ -23,6 +25,9 @@ const routes: Routes = [
   { path: 'saveAsset', component: SaveAssetComponent},
   { path: 'account', component: AccountComponent,canActivate:[IsConnectedGuard]},
   { path: 'account/form', component: AccountFormComponent,canActivate:[IsConnectedGuard]},
+  { path: 'account/profile', component: ProfileComponent,canActivate:[IsConnectedGuard]},
+  { path: 'account/edit', component: EditComponent,canActivate:[IsConnectedGuard]},
+  
   
 
 ];
