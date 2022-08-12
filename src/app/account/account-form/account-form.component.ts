@@ -1,16 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { timingSafeEqual } from 'crypto';
 import { AlertService } from 'src/app/services/alert.service';
 import { ConnectService } from 'src/app/services/connect.service';
 import { CountriesService } from 'src/app/services/countries.service';
-import { User } from 'src/app/models/user';
-import Users from "artifacts/contracts/Users/Users.sol/Users.json"
-import Auth from "artifacts/contracts/Auth/Auth.sol/Auth.json"
-import { AbiItem } from 'web3-utils';
 import { LoadServiceService } from 'src/app/loading/load-service.service';
 import { WelcomeMessage } from 'src/app/models/welcome-message';
 import { MessageService } from 'src/app/services/message.service';
 import { from } from 'rxjs';
+import { Router } from '@angular/router';
+import { TokenService } from 'src/app/services/token.service';
+import { environment as env} from 'src/environments/environment.prod';
+
 
 @Component({
   selector: 'app-account-form',
@@ -27,9 +26,6 @@ export class AccountFormComponent implements OnInit {
         phone:string = "";
         country:string = "";
         street_address:string = "";
-        next_of_kin:string = "";
-        next_of_kin_phone:string = "";
-        next_of_kin_email:string = "";
         others:string = "{}";
         welcomeMessage:WelcomeMessage = new WelcomeMessage(this.email);
 
@@ -38,7 +34,9 @@ export class AccountFormComponent implements OnInit {
     public alertService: AlertService,
     public countries:CountriesService,
     public loadService:LoadServiceService,  
-    private message:MessageService
+    private message:MessageService,
+    private router:Router,
+    private tokenService:TokenService
     ) { 
     }
 
@@ -60,30 +58,26 @@ export class AccountFormComponent implements OnInit {
     if(this.country==""){this.alertService.alert("Choose country", "danger"); return}
     if(this.phone==""){this.alertService.alert("Enter phone number", "danger"); return}
     if(this.street_address==""){this.alertService.alert("Enter street address", "danger"); return}
-    if(this.next_of_kin==""){this.alertService.alert("Nexf of Kin name", "danger"); return}
-    if(this.next_of_kin_phone==""){this.alertService.alert("Enter next of Kin phone number", "danger");return;}
-    if(this.next_of_kin_email==""){this.alertService.alert("Enter of kin email address", "danger");return;}
 
     this.loadService.Loader()
     const web3 = await this.connectService.checkConnection();
-    const newUser = new this.connectService.web3.eth.Contract(this.connectService.getCreds.usersAbi,this.connectService.getCreds.users)
+    const newUser = new this.connectService.web3.eth.Contract(env.usersAbi,env.usersAddr)
     const accounts = await  this.connectService.web3.eth.getAccounts()
 
    try{await newUser.methods.createAccount(
         this.connectService.getCreds.platformToken,
        
-         [
-          0,
+         [        
+         "0",
         accounts[0],
+        this.tokenService.generateToken(10),
         this.fullname,
         "",
         this.email,
-        this.phone.toString(),
+        this.countrycode+"-"+this.phone.toString(),
         this.country,
         this.street_address,
-        this.next_of_kin,
-        this.next_of_kin_phone.toString(),
-        this.next_of_kin_email,
+        Math.ceil(Math.random()*100000),
         this.others,
          ]).send({from: accounts[0]})
   .then(
@@ -92,14 +86,19 @@ export class AccountFormComponent implements OnInit {
     this.alertService.alert("Account created successfully",
       "Success");
     this.loadService.hideLoader();
-    const sendmail = this.message.sendWelcome(this.welcomeMessage);
-    from(sendmail).subscribe(
-      {next:data=>{
-      },
-        error:(data)=>{ 
-        this.alertService.alert(data.error.message,"danger")
-      }}
-      );
+    this.message.sendMail(
+      "ACCOUNT CREATED",
+      `Dear ${this.fullname} your DAST account was created successfully.
+      We look forward to supporting you along the way.” “Congratulations on the new position, and many good wishes for your first day at [company name]. We want you to know that we believe in you and we're behind you in everything you do here. A warm welcome from the whole team here at DAST`,
+      "admin@dast.tech",
+      "DAST",
+      this.email,
+      this.fullname,
+      "welcome",
+      this.connectService.getCreds.apiToken 
+      ).subscribe({
+        next: ()=>{}
+      })
    }
    else{
     this.alertService.alert("Account creation failed",
@@ -122,6 +121,9 @@ export class AccountFormComponent implements OnInit {
     this.alertService.alert(e.message,"danger");
     this.loadService.hideLoader();
   }
+}
+finally{
+  this.router.navigateByUrl("/account")
 }
 // 
   }

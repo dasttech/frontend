@@ -12,14 +12,14 @@
 
 					<div class="brothers">
 						<div class="nav-links">
-							<ul>
+							<ul (click)="openMenu()">
+								 <li class="link1"><a routerLink="/">Home</a></li>
 								 <li class="link1"><a routerLink="/about">About</a></li>
-								 <li class="link2"><a routerLink="/whitepaper">Whitepaper</a></li>
-								 <li class="link2"><a routerLink="/account"  *ngIf="getIsConnected">Account</a></li>
-								 <li class="link4"><a routerLink="/roadmap">Roadmap</a></li>
-								 <li class="link4"><a routerLink=""><img src="{{telegram}}"></a></li>
-								 <li class="link4"><a routerLink=""><img src="{{twitter}}"></a></li>								 
-								 <li class="link4"><a routerLink="account/profile"  *ngIf="getIsLoaded">Profile</a></li>
+								 <!-- <li class="link2"><a routerLink="/whitepaper">Whitepaper</a></li> -->
+								 <li class="link2"><a routerLink="/account"  >Account</a></li>
+								 <!-- <li class="link4"><a routerLink="/roadmap">Roadmap</a></li> -->
+								 <li class="link4"><a href="https://t.me/dastofficial1"><img src="{{telegram}}"></a></li>
+								 <li class="link4"><a href="https://mobile.twitter.com/DastCommunity?t=9hyFOcQGgx1gKi3c1blSNA&s=09"><img src="{{twitter}}"></a></li>					
 							</ul>
 						</div>
 
@@ -31,16 +31,16 @@
     </nav>
 		<div class="mobile-nav" [class.menuClass]="menuVariable">
 			<div>
-				<ul>
+				<ul (click)="openMenu()">
+					<li class="link1"><a routerLink="/">Home</a></li>
 					<li class="link1"><a routerLink="/about">About</a></li>
-					<li class="link2"><a routerLink="/whitepaper">Whitepaper</a></li>
-					<li class="link2"><a routerLink="/account"  *ngIf="getIsLoaded">Account</a></li>
-					<li class="link4"><a routerLink="/roadmap">Roadmap</a></li>
+					<!-- <li class="link2"><a routerLink="/whitepaper">Whitepaper</a></li> -->
+					<li class="link2"><a routerLink="/account"  >Account</a></li>
+					<!-- <li class="link4"><a routerLink="/roadmap">Roadmap</a></li> -->
 					<li class="link4">
-						<a routerLink="" class="mr-5"><img src="{{telegram}}"></a>
+						<a href="https://t.me/dastofficial1" class="mr-5"><img src="{{telegram}}"></a>
 						&nbsp;&nbsp;
-						<a routerLink=""><img src="{{twitter}}"></a></li>
-					<li class="link4" *ngIf="getIsLoaded"><a routerLink="account/profile">Profile</a></li>
+						<a href="https://mobile.twitter.com/DastCommunity?t=9hyFOcQGgx1gKi3c1blSNA&s=09"><img src="{{twitter}}"></a></li>
 				</ul>
 			</div>
 
@@ -50,5 +50,5 @@
 			</div>
 		</div>
 </div>
-<div id="liveAlertPlaceholder"></div>
+<div id="liveAlertPlaceholder" style="z-index: 1000;"></div>
 <app-loading ></app-loading>

@@ -1,16 +1,168 @@
-<div class="container-fluid pt-5">
+<div class="container-fluid pt-5 profile">
     <div class="row pt-5">
-        <div class="col-md-12 pt-5 text-center alert alert-info">
-            <h3 class="">{{getUser.fullname}}</h3>
-                <hr />
-            <p>
-                {{getUser.phone}} <br>
-                {{getUser.email}} <br>
-                {{getUser.country }} <br>
+        <div class="col-md-3 sidebar" (click)="toggleSideBar()"   [ngClass]="{'showsidebar': !showsidebar}">
+            <div class="d-flex  justify-content-center">
+            <img class="w-25 rounded profileimg"  src="assets/images/img.png" alt="">
+            <img class="w-25 rounded profileimg2 d-md-none"   src="assets/images/img.png" alt="">
+           
+                
+            </div>
+            <h3 class="text-light text-center">{{fullname}}</h3>
+      <h6 class="text-light text-center">{{show_account_token?account_token:"XXXXXXXXXX"}} <i class="bi bi-eye" *ngIf="!show_account_token" (click)="show_account_token=true"></i>
+        <i class="bi bi-eye-slash" *ngIf="show_account_token" (click)="show_account_token=false"></i></h6>
 
-            </p>
+            <ul>
+                <li (click)="switchTab(0)" >Bio</li>
+                <li (click)="switchTab(1)" >Your Contact</li>
+                <li (click)="switchTab(2)" >Trusted Contacts</li>
+                <li (click)="switchTab(3)" >Next Of Kin Information</li>
+            </ul>
+        </div>
+        <div class="col-md-3"></div>
+
+        <div class="col-md-9 pt-5" *ngIf="tabIndex==0">
+            <h3 class="text-light offset-5">Bio Data</h3>
+                <hr />
+                <form class="text-light">
+                    
+                   <div class="row">
+                       <div class="mb-3 col-md-8 offset-md-2">
+                           <label >Full Name</label>
+                           <input type="text" name="fullname" [(ngModel)]="fullname" class="form-control " id="fullname" aria-describedby="emailHelp">
+                         </div>
+                         <div class="mb-3 col-md-8 offset-md-2">
+                            <label >Country</label>
+                            <!-- <input type="text"> -->
+                            <select  name="country"  [(ngModel)]="country" [value]="country" class="form-control" id="country"  aria-describedby="emailHelp">
+    
+                                <option  *ngFor="let country of countries.countries" [value]="country" >{{country[1]}}</option>
+                            </select>
+                          </div>
+
+                          <div class="mb-3 col-md-8 offset-md-2">
+                          <label >Residential Address</label>
+                                <input type="text" name="street_address" [(ngModel)]="street_address"  class="form-control"  id="address" aria-describedby="emailHelp">
+                        </div>
+                   </div>
+                   
+                 </form>
             <hr />
-                <button btn btn-primary routerLink="/account/edit">Edit Profile</button>
+               <div class="save btns w-100">
+                <button class="w-25 offset-5" (click)="saveBio()" *ngIf="!isloading">Save</button>
+                <button class="w-25 offset-5" *ngIf="isloading">
+                    <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div></button>
+             </div>
+            <div class="info">
+                <h1></h1>
+            </div>
+        </div>
+
+        <div class="col-md-9 pt-5" *ngIf="tabIndex==1">
+            <h3 class="text-light offset-5">Contact</h3>
+            <div class="alert alert-danger w-75 offset-2 mt-3" *ngIf="phone==null||email==''" text-center>Your contact details is missing. You will not be able recover your account if your loss access to your phone.</div>
+                <hr />
+                <form class="text-light">
+                    
+                   <div class="row">
+                       <div class="mb-3 col-md-8 offset-md-2">
+                        <label >Email</label>
+                        <input type="email" name="email" [(ngModel)]="email"  class="form-control" id="email">
+                        </div>
+                         <div class="mb-3 col-md-8 offset-md-2">
+                            <label >Phone Number</label>
+                            <i><small class="text-danger"> Don't include country code</small></i>
+                          <div class="input-group mb-3">
+                            <span class="input-group-text">+{{country.length>0?countrycode:countries.countries[0][2]}}</span>
+                            <input type="number" maxlength="15" name="phone" [(ngModel)]="phone"  class="form-control" id="exampleInputPassword1">
+                          </div>
+                          </div>
+                   </div>
+                   
+                 </form>
+            <hr />
+               <div class="save btns w-100">
+                <button class="w-25 offset-5" (click)="saveContact()" *ngIf="!isloading">Save</button>
+                <button class="w-25 offset-5" *ngIf="isloading">
+                    <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div></button>
+             </div>
+            <div class="info">
+                <h1></h1>
+            </div>
+        </div>
+
+
+        <div class="col-md-9 pt-5" *ngIf="tabIndex==2">
+            <h3 class="text-light offset-md-3 text-center">Trusted Contacts/Relations <button class="btn"> 
+                 <i class="bi bi-plus-circle-fill" data-bs-toggle="modal" data-bs-target="#add" style="font-size: 2rem; color: cornflowerblue;"></i></button></h3> 
+            <div class="alert alert-danger w-75 offset-2 mt-3" *ngIf="!contacts||contacts.length<3" text-center>Add minimum of 3 people who can validate your account recovery by your next of kin or any other third party.</div>
+                
+            <app-contacts [contacts]="contacts"></app-contacts>
+        <div class="save btns w-100">
+                <button class="w-25 offset-5" (click)="saveTContact()" *ngIf="!isloading">Save</button>
+                <button class="w-25 offset-5" *ngIf="isloading">
+                    <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div></button>
+            </div>
+            <div class="info">
+                <h1></h1>
+            </div>
+        </div>
+
+        <div class="col-md-9 pt-5" *ngIf="tabIndex==3">
+            <h3 class="text-light offset-5">Next of Kin</h3>
+                <hr />
+                <form class="text-light">
+                    
+                   <div class="row">
+                       <div class="mb-3 col-md-8 offset-md-2">
+                           <label >Full Name</label>
+                           <input type="text" name="nkin_name" [(ngModel)]="nkin_name" class="form-control " id="fullname" aria-describedby="emailHelp">
+                         </div>
+                         <div class="mb-3 col-md-8 offset-md-2">
+                            <label >Country</label>
+                            <!-- <input type="text"> -->
+                            <select  name="country"  [(ngModel)]="nkin_country" [value]="nkin_country" class="form-control" id="country"  aria-describedby="emailHelp">
+    
+                                <option  *ngFor="let country of countries.countries" [value]="country" >{{country[1]}}</option>
+                            </select>
+                          </div>
+                   </div>
+
+                   <div class="row">
+                    <div class="mb-3 col-md-8 offset-md-2">
+                     <label >Email</label>
+                     <input type="email" name="nkin_email" [(ngModel)]="nkin_email"  class="form-control" id="email">
+                     </div>
+                      <div class="mb-3 col-md-8 offset-md-2">
+                         <label >Phone Number</label>
+                         <i><small class="text-danger"> Don't include country code</small></i>
+                       <div class="input-group mb-3">
+                         <span class="input-group-text">+{{nkin_country.length>0?nkincountrycode:countries.countries[0][2]}}</span>
+                         <input type="number" maxlength="15" name="nkin_phone" [(ngModel)]="nkin_phone"  class="form-control" id="exampleInputPassword1">
+                       </div>
+                       </div>
+
+                       
+                  <div class="mb-3 col-md-8 offset-md-2">
+                    <label class="form-label">Relationship</label>
+                    <input type="text" name="nkin_relationship" [(ngModel)]="nkin_relationship" class="form-control" >
+                  </div>
+                </div>
+                   
+                 </form>
+            <hr />
+               <div class="save btns w-100">
+                <button class="w-25 offset-5" (click)="addNextOfKin()" *ngIf="!isloading">Save</button>
+                <button class="w-25 offset-5" *ngIf="isloading">
+                    <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div></button>
+             </div>
             <div class="info">
                 <h1></h1>
             </div>

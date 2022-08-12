@@ -7,7 +7,15 @@
     margin-top: 30vh;
 }
 
-// .loading{
-//     margin-top: 200px;
-//     position: fixed;
-// }
+.create:hover{
+    border: 2px solid #5758E0;
+    border-radius: 10px;
+    /* Firefox */
+    -moz-transition: all 1s ease-in-out;
+    /* WebKit */
+    -webkit-transition: all 1s ease-in-out;
+    /* Opera */
+    -o-transition: all 1s ease-in-out;
+    /* Standard */
+    transition: all 1s ease-in-out;
+}

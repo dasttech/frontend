@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-2">
+      <table class="table table-striped text-light lh-lg">
+        <thead class="text-capitalize">
+                <th>id</th>
+                <th>name</th>
+                <th>email</th>
+                <th>phone</th>
+                <th>country</th>
+                <th>relationship</th>
+                <th>Delete</th>
+        </thead>
+        
+            <tbody class="text-capitalize" *ngFor="let contact of contacts; let i = index;">
+                <td>{{contact.id}}</td>
+                <td>{{contact.name}}</td>
+                <td class="text-lowercase">{{contact.email}}</td>
+                <td>{{contact.phone}}</td>
+                <td>{{contact.country}}</td>
+                <td>{{contact.relationship}}</td>
+                <td><i class="bi-trash text-danger"  style="font-size: 2rem; color: rgb(190, 72, 36);" (click)="deleteContact(i)"></i></td>
+            </tbody>
+          </table>
+    </div>
+  </div>
+</div>
+
+  <div class="modal fade text-dark" id="add"  tabindex="-1" style="background-image: linear-gradient(45deg purple orange)">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-dark">Add Trusted Contact</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="mb-3">
+                  <label class="form-label">Name</label>
+                  <input type="text" name="contact_name" [(ngModel)]="contact_name" class="form-control" >
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="contact_email" [(ngModel)]="contact_email" class="form-control" >
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label class="form-label">Country</label>
+                    <select  name="country"  [(ngModel)]="country" [value]="country" class="form-control" id="country"  aria-describedby="emailHelp">
+
+                        <option  *ngFor="let country of countries.countries" [value]="country" >{{country[1]}}</option>
+                    </select>
+                  </div>
+                   
+                  <div class="mb-3">
+                    <label >Phone Number</label>
+                    <i><small class="text-danger"> Don't include country code</small></i>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">+{{countrycode}}</span>
+                    <input type="number" maxlength="15" name="contact_phone" [(ngModel)]="contact_phone"  class="form-control" id="exampleInputPassword1">
+                  </div>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label class="form-label">Relationship</label>
+                    <input type="text" name="contact_relationship" [(ngModel)]="contact_relationship" class="form-control" >
+                  </div>
+
+                  <input type="reset" class="d-none reset_btn" value="Reset">
+              </form>
+        </div><br>
+        <div class="alert alert-danger mr-5 ml-5 text-center" *ngIf="alertMessage.length>3">{{alertMessage}}</div>
+        <div class="modal-footer">
+          <button type="button " class="btn btn-secondary close_btn" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

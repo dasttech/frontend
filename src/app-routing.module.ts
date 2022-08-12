@@ -12,6 +12,9 @@ import { AccountFormComponent } from './app/account/account-form/account-form.co
 import { IsConnectedGuard } from './app/guards/is-connected.guard';
 import { ProfileComponent } from './app/account/profile/profile.component';
 import { EditComponent } from './app/account/edit/edit.component';
+import { AssetsComponent } from './app/save-asset/assets/assets.component';
+import { RecoveryPageComponent } from './app/account/recover-account/recovery-page/recovery-page.component';
+import { NextOfKinComponent } from './app/account/recover-account/next-of-kin/next-of-kin.component';
 
 
 
@@ -23,10 +26,15 @@ const routes: Routes = [
   { path: 'whitepaper', component: WhitePaperComponent},
   { path: 'video', component: VideoComponent},
   { path: 'saveAsset', component: SaveAssetComponent},
-  { path: 'account', component: AccountComponent,canActivate:[IsConnectedGuard]},
-  { path: 'account/form', component: AccountFormComponent,canActivate:[IsConnectedGuard]},
-  { path: 'account/profile', component: ProfileComponent,canActivate:[IsConnectedGuard]},
-  { path: 'account/edit', component: EditComponent,canActivate:[IsConnectedGuard]},
+  { path: 'account', component: AccountComponent},
+  { path: 'account/form', component: AccountFormComponent},
+  { path: 'account/profile', component: ProfileComponent},
+  { path: 'account/edit', component: EditComponent},
+  { path: 'account/assets', component: AssetsComponent},
+  { path: 'account/recovery/search', component: RecoveryPageComponent}, 
+  { path: 'account/recovery/next-of-kin', component: NextOfKinComponent},
+  {path: '**', redirectTo: '/account'}
+
   
   
 

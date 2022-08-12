@@ -3,10 +3,9 @@ import QRCodeModal from "@walletconnect/qrcode-modal";
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import Web3 from "web3";
 import Web3Modal from "web3modal";
-import Users from "artifacts/contracts/Users/Users.sol/Users.json"
-import Auth from "artifacts/contracts/Auth/Auth.sol/Auth.json"
 import { AlertService } from './alert.service';
 import { AbiItem } from 'web3-utils';
+import { environment as env } from 'src/environments/environment.prod';
 
 
 @Injectable({
@@ -21,18 +20,9 @@ export class ConnectService {
   public web3 = new Web3();
   private creds = {
     platformToken:"1234567890",
-    auth:"0x5001A69809d9C7B5A7357b46C2ea65D84D5ABf1C",
-    users:"0x3E9C1efCe66B88e05aa803B33604251eF45B69BF",
-    usersAbi: Users.abi as AbiItem[],
-    AuthAbi : Auth.abi as AbiItem[],
-    chainId:3,
+    apiToken:"mytoken123",
 
-    apiUrl:"http://localhost:8000/api/sendmail",
-    emailBanner:"",
-    apiToken:"H6JK5XKdcTOZZqVHvHZaOog2mGqXwEq5",
-
-    infuraId: "",
-
+    infuraId: env.infura_id
 
   }
 
@@ -80,10 +70,11 @@ export class ConnectService {
       this.web3 = new Web3(provider);
       const chainId = await this.web3.eth.net.getId();
   
-      if(chainId!==this.creds.chainId){
+      if(chainId!==env.chainId){
         
         await provider.disconnect()
         this.alertService.alert("Unsupported network", "danger");
+        return;
       
       }
       else {
@@ -120,7 +111,7 @@ async checkConnection(){
  this.accounts =await this.web3.eth.getAccounts();
  } catch (error) {
   console.log(error)
-  this.alertService.alert("Something went wrong","danger")
+  this.alertService.alert("Connection failed! Make sure your are connected to the right network","danger")
  }
  if(this.accounts.length>0){
     this.isConnected = true;

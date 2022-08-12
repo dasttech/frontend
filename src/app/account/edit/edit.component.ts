@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { from } from 'rxjs';
 import { LoadServiceService } from 'src/app/loading/load-service.service';
 import { User } from 'src/app/models/user';
@@ -9,6 +10,7 @@ import { CountriesService } from 'src/app/services/countries.service';
 import { MessageService } from 'src/app/services/message.service';
 import { AccountComponent } from '../account.component';
 import { AccountService } from '../account.service';
+import { environment as env } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-edit',
@@ -36,7 +38,9 @@ export class EditComponent implements OnInit {
     public alertService: AlertService,
     public countries:CountriesService,
     public loadService:LoadServiceService,  
-    private message:MessageService
+    private message:MessageService,
+    private router:Router
+
   ) { }
 
   ngOnInit(): void {
@@ -46,17 +50,22 @@ export class EditComponent implements OnInit {
     this.fullname = this.accountService.getUser.fullname;
     this.avatar = this.accountService.getUser.avatar;
     this.email = this.accountService.getUser.email;
-    this.phone = this.accountService.getUser.phone;
+    this.phone = this.accountService.getUser.phone.split("-",2)[1];
     this.country = this.accountService.getUser.country;
     this.street_address = this.accountService.getUser.street_address;
     this.next_of_kin = this.accountService.getUser.next_of_kin;
-    this.next_of_kin_phone = this.accountService.getUser.next_of_kin_phone;
+    this.next_of_kin_phone = this.accountService.getUser.next_of_kin_phone.split("-",2)[1];
     this.next_of_kin_email = this.accountService.getUser.next_of_kin_email;
     this.others = this.accountService.getUser.others;
 
   }
+
   get countrycode(){
-    return this.country.split(",",3)[2]
+   try {
+    return this.country.split(",",3)[2];
+   } catch (error) {
+    return ""
+   }
   }
 
   get mycountry(){
@@ -77,7 +86,7 @@ export class EditComponent implements OnInit {
     if(this.next_of_kin_email==""){this.alertService.alert("Enter of kin email address", "danger");return;}
     this.loadService.Loader()
     const web3 = await this.connectService.checkConnection();
-    const editedUser = new this.connectService.web3.eth.Contract(this.connectService.getCreds.usersAbi,this.connectService.getCreds.users)
+    const editedUser = new this.connectService.web3.eth.Contract(env.usersAbi,env.usersAddr)
     const accounts = await  this.connectService.web3.eth.getAccounts();
    try{
     await editedUser.methods.editAccount(
@@ -86,15 +95,14 @@ export class EditComponent implements OnInit {
          [
           0,
         accounts[0],
+        "",
         this.fullname,
         "",
         this.email,
-        this.phone.toString(),
+        this.countrycode+"-"+this.phone.toString(),
         this.country,
         this.street_address,
-        this.next_of_kin,
-        this.next_of_kin_phone.toString(),
-        this.next_of_kin_email,
+        "",
         this.others,
          ]
       
@@ -105,6 +113,7 @@ export class EditComponent implements OnInit {
     this.alertService.alert("Account updated successfully",
       "Success");
     this.loadService.hideLoader();
+    this.accountService.fetchUserData(this.connectService.getCreds.platformToken);
     const sendmail = this.message.sendWelcome(this.welcomeMessage);
     from(sendmail).subscribe(
       {next:data=>{
@@ -120,7 +129,7 @@ export class EditComponent implements OnInit {
     this.loadService.hideLoader();
    }
   }).catch((err:Error) => {
-     this.alertService.alert("Transaction failed. Account may already exist in the database","danger");
+     this.alertService.alert("Transaction failed.","danger");
     this.loadService.hideLoader();
   });
   
@@ -134,6 +143,9 @@ export class EditComponent implements OnInit {
     this.alertService.alert(e.message,"danger");
     this.loadService.hideLoader();
   }
+  
+}finally{
+  this.router.navigateByUrl("/account/profile")
 }
 // // 
   }

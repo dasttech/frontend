@@ -1,6 +1,17 @@
+<div class="container-fluid" *ngIf="!isAccountCreated">
+    <div class="row">
+        <div class="col-md-6">
+            <app-create-account></app-create-account>
+        </div>
 
-            
-            <app-create-account *ngIf="isloaded && myAccount.fullname==''"></app-create-account>
-            <app-security *ngIf="isloaded && myAccount.fullname!=''"></app-security>
-
-       
+        <div class="col-md-6">
+            <app-recover-account></app-recover-account>
+        </div>
+        <div class="col-md-6 offset-md-3 text-center create p-5">
+            <img src="assets/icons/Recover Assets.png" alt="">
+            <h4 class="text-light p-2">Recover Account</h4>
+            <button class="btn-primary btn mt-3" routerLink="/account/recovery/next-of-kin">By Next of Kin</button>
+        </div>
+    </div>
+</div>
+<app-security *ngIf="isAccountCreated"></app-security>

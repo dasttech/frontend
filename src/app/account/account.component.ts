@@ -5,6 +5,7 @@ import { ConnectService } from '../services/connect.service';
 import { LoadServiceService } from '../loading/load-service.service';
 import { User } from '../models/user';
 import { AccountService } from './account.service';
+import { TokenService } from '../services/token.service';
 
 @Component({
   selector: 'app-account',
@@ -12,38 +13,52 @@ import { AccountService } from './account.service';
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
-  isloaded = false;
-  myAccount:User = new User("","","","","","","","","","","","");
-  
+  myAccount:User = new User("","","","","","","","","","","","","");
+  userExist:boolean = false;
   constructor(
     private connectService:ConnectService,
     private loadService:LoadServiceService,
-    private accountService:AccountService
+    private accountService:AccountService,
+    private tokenService:TokenService
     ) { 
-    this.loadService.Loader();
+    // this.loadService.Loader();
   }
 
-  ngOnInit(): void {{
+  ngOnInit(): void {
+    {
         this.loadService.changeMessage("Fetching user data");
     setTimeout(async () => {
       if(!this.accountService.isloaded&&this.connectService.isConnected){
         await this.accountService.fetchUserData(this.connectService.getCreds.platformToken);
        this.myAccount = this.accountService.getUser; 
-       this.isloaded = this.accountService.isloaded;   
-       console.log(this.myAccount);
+    
       }else{
-        this.isloaded = this.accountService.isloaded;
         this.myAccount = this.accountService.getUser;
         this.loadService.hideLoader();
-       console.log(this.myAccount);
-      }
-    }, 0);}
+        
+        // fetchlatest
+        await this.accountService.fetchUserData(this.connectService.getCreds.platformToken);
+       this.myAccount = this.accountService.getUser; 
     
+    
+      }
+    }, 0);
+  
+  }
   }
   
   ngOnDestroy():void{
-    this.loadService.hideLoader();
+    this.loadService.hideLoader();  
   }
 
+  get isAccountCreated(){
+   try {
+    return this.myAccount.fullname.length>0;
+    
+   } catch (error) {
+    return false;
+    
+   }
+  }
 
 }

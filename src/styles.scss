@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "/node_modules/bootstrap/scss/bootstrap.scss";
+@import '~bootstrap-icons/font/bootstrap-icons';
 body{
 	background: linear-gradient(122.8deg, #1D3062 14.84%, #3D272B 100%);
 }
@@ -17,6 +18,8 @@ button{
 	font-family: 'Inter';
 	font-size: 16px;
 	color: #FFFFFF;
+	width: 150px;
+	height: 50px;
   }
 
   #liveAlertPlaceholder{
@@ -39,3 +42,4 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+

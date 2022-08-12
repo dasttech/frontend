@@ -1,35 +1,35 @@
-<div class="main">
-    <div class="cover">
-        <div class="top-btn">
-            <button class="details-btn">Enter Personal Details</button>
-            <button class="other-btn">Other Details</button>
-        </div>
-        <div>
-            <form action="">
-                <div>
-                   <label for="Title">Title/category</label><br>
-                    <input name="Title" type="text" placeholder="e.g Bitcoin Wallet Address"> 
-                </div> <br>
-                <div>
-                    <label for="Fullname">Full name</label><br>
-                     <input name="Fullname" type="text" placeholder="e.g John Moriz Peters"> 
-                 </div> <br>
-                 <div>
-                    <label for="PhoneNumber">Phone number</label><br>
-                     <input name="PhoneNumber" type="text" placeholder="e.g +234 706 731 730"> 
-                 </div> <br>
-                 <div>
-                    <label for="Email">Email</label><br>
-                     <input name="Email" type="text" placeholder="e.g name@gmail.com"> 
-                 </div> <br>
-                 <div>
-                    <label for="Password">Password</label><br>
-                     <input name="Password" type="text" placeholder="e.g Bit@wall2022"> 
-                 </div> <br>
-                 <div>
-                     <button class="continue-btn">CONTINUE</button>
-                 </div>
+<!-- <div class="main">
+    <div class="cover"> -->
+<div class="container pt-5">
+    <div class="row pt-5">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 pt-5 text-light">
+            <form>
+
+                <div class="part1" >
+                    <h1 class="display-4 text-center">Asset Details</h1>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Asset Title</label>
+                        <input type="text" class="form-control" placeholder="Title of the asset" name="asset_title"
+                            [(ngModel)]="asset_title" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="" class="form-label">Full Asset Description</label>
+                        <textarea class="form-control text-dark w-100" name="asset_asset" [(ngModel)]="asset_asset"
+                            placeholder="Full asset details here" style="height: 300px; width: 100vw;"></textarea>
+                    </div>
+                </div>
+
+                <br>
+                <div class="col-12 d-flex justify-content-center" >
+                    <button type="submit" class="w-25 continue-btn" (click)="save()">Submit</button>
+                </div>
             </form>
+
+
         </div>
     </div>
 </div>
+<!-- </div>
+</div> -->

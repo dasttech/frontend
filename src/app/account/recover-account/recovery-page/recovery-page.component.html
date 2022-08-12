@@ -1,0 +1,134 @@
+<!-- Search Stage -->
+
+<div class="container pt-5" *ngIf="stage=='search'">
+    <div class="row pt-5" *ngIf="foundUser.length==0||foundUser[0]==''">
+        <div class="col-12">
+            <h3 class="alert alert-muted text-center text-light" style="background-color: rgba(253, 251, 251,0.2) ;">Account Search Account</h3>
+            <h3 (click)="error = ''" class="alert alert-muted text-center text-light" style="background-color: rgb(239, 116, 116) ;" *ngIf="error">{{error}}</h3>
+        </div>
+        <div class="col-md-4 offset-md-4 text-light" >
+            <form action="">
+                    
+                <div class="row">
+                 
+                    <div class="mb-3 col-md-12">
+                        <label >Search Account By</label>
+                        <!-- <input type="text"> -->
+                        <select  name="searchType"  [(ngModel)]="searchType" [value]="searchType" class="form-control" id="country"  aria-describedby="emailHelp">
+                           <option value="0">Account Token</option>
+                           <option value="1">Email</option>
+                           <option value="2">Phone Number</option>
+                        </select>
+                      </div>
+                      <div class="mb-3 col-md-12" *ngIf="searchType==0">
+                        <label >Enter Account Token</label>
+                        <input type="text" name="searchText" [(ngModel)]="searchText"  placeholder="Account Token" class="form-control" id="email">
+                      </div>
+                      
+                      <div class="mb-3 col-md-12" *ngIf="searchType==1">
+                        <label >Enter Email</label>
+                        <input type="email" name="searchText" [(ngModel)]="searchText"  placeholder="Email Address" class="form-control" id="email">
+                      </div>
+                      
+                      <div class="mb-3 col-md-12" *ngIf="searchType==2">
+                                <label >Country</label>
+                                <select  name="country"  [(ngModel)]="country" [value]="country" class="form-control" id="country"  aria-describedby="emailHelp">
+                                    <option value="">Select your country</option>
+                                    <option  *ngFor="let country of countries.countries" [value]="country" >{{country[1]}}</option>
+                                </select>
+                            <i><small class="text-danger"> Don't include country code</small></i>
+                          <div class="input-group mb-3">
+                            <span class="input-group-text">+{{country.length>0?countrycode:countries.countries[0][2]}}</span>
+                            <input type="number" maxlength="15" name="searchText" [(ngModel)]="searchText"  class="form-control" id="exampleInputPassword1">
+                          </div>
+                      </div>
+
+                      
+                      <div class="col-12 text-center">
+                        <button type="button"  (click)="searchAccount()">Submit</button>
+                    </div>
+                </div>      
+                
+                
+            </form>
+        </div>
+    </div>
+    <div class="row pt-5" *ngIf="foundUser.length>0&&foundUser[0]!=''">
+      <div class="col-12">
+          <h3 class="alert alert-muted text-center text-light" style="background-color: rgba(253, 251, 251,0.2) ;">Congratulations! Account found</h3>
+          <h3 class="alert alert-muted text-center text-light" style="background-color: rgb(239, 116, 116) ;" *ngIf="error">{{error}}</h3>
+            <ul class="alert alert-primary text-">
+              <li>User name: {{foundUser[0]}}</li>
+              <li>Phone Number: XXX-{{foundUser[1].substring(foundUser[1].length-5,foundUser[1].length)}}</li>
+              <li>Email :  ...{{foundUser[2].substring(4,foundUser[2].length)}}</li>
+            
+            </ul>
+            <div class="text-center">
+              <button class="border border-1 mr-2" (click)="foundUser=[]"><i class="bi bi-arrow-return-left"></i> Back</button> 
+              <button class="border border-1" (click)="stage='auth'"><i class="bi bi-fast-forward-circle"></i> Continue</button>
+            </div>
+            <hr class="text-warning">
+      </div>
+    </div>
+</div>
+
+<!-- Authenticate -->
+<div class="container pt-5 text-light" *ngIf="stage=='auth'" style="overflow: hidden">
+  <div class="row pt-5">
+      <div class="col-12">
+          <h3 class="alert alert-muted text-center text-light" style="background-color: rgba(253, 251, 251,0.2);"> User Authentication</h3>
+          <h3 class="alert alert-muted text-center text-light" style="background-color: rgb(239, 116, 116) ;" *ngIf="foundUser.length>0&&foundUser[0]==''">Acount not found</h3>
+          <ul class="alert alert-primary text-">
+            <li>User name: {{foundUser[0]}}</li>
+            <li>Phone Number: XXX-{{foundUser[1].substring(foundUser[1].length-5,foundUser[1].length)}}</li>
+            <li>Email :  ...{{foundUser[2].substring(4,foundUser[2].length)}}</li>
+          </ul>
+      </div>
+      </div>
+
+      <div class="row p-5" style="background-color: rgba(253, 251, 251,0.2) ;">
+       <i class="bi bi-x-circle " (click)="stage='search'" style="float: right; position: relative;left: 90%;cursor: pointer; font-size: 50px;"></i>
+        
+        <div class="col-sm-6 text-center mb-5">
+          <h2>OTP METHOD</h2>
+          <P>You will recieve recovery OTP through email and SMS.</P>
+          <div class="">
+            <button class="border border-1" (click)="sendPins()"><i class="bi bi-fast-forward-circle"></i> Continue</button>
+          </div>
+        </div>
+        <div class="col-sm-6 text-center mb-5">
+          <h2>VALIDATORS</h2>
+          <P>Our validators will contact your trusted contacts to validate your request
+          </P> 
+          <button class="border border-1" ><i class="bi bi-fast-forward-circle"></i> Continue</button>
+         
+        </div>
+      </div>
+      </div>
+
+      <!-- OTP -->
+<div class="container pt-5 text-light" *ngIf="stage=='otp'" style="overflow: hidden">
+        <div class="row p-5" style="background-color: rgba(253, 251, 251,0.2) ;">
+       <i class="bi bi-x-circle " (click)="stage='search'" style="float: right; position: relative;left: 90%;cursor: pointer; font-size: 50px;"></i>
+        
+        <div class="col text-center mb-5">
+          <h3 class="alert alert-muted text-center text-light" style="background-color: rgba(253, 251, 251,0.2) ;"> Confirmation Required</h3>
+          <h3 class="alert alert-muted text-center text-light" style="background-color: rgb(239, 116, 116) ;" *ngIf="foundUser.length>0&&foundUser[0]==''">Acount not found</h3>
+     
+          <!-- <h2>Confirm</h2> -->
+          <P class="alert alert-warning">You will recieve recovery OTP through email and SMS.</P>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Email Pin</span>
+            <input type="text" maxlength="15" name="email_pin" [(ngModel)]="email_pin"  class="form-control" id="exampleInputPassword1">
+          </div> <div class="input-group mb-3">
+            <span class="input-group-text">SMS PIN</span>
+            <input type="text" maxlength="15" name="sms_pin" [(ngModel)]="sms_pin"  class="form-control" id="exampleInputPassword1">
+          </div>
+          <div class="">
+            <button class="border border-1" (click)="recoverAccount()"><i class="bi bi-fast-forward-circle"></i> Confirm Pins</button>
+            <button class="border border-1 bg-warning" (click)="sendPins()" [disabled]="resend_counter>0">{{resend_counter>0?"Resend at "+resend_counter:"Resend Pins"}}</button>
+          </div>
+        </div>
+      </div>
+      </div>
+      

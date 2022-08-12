@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ErrorHandler, Injectable } from '@angular/core';
+import { environment as env } from 'src/environments/environment.prod';
 
 
 import { Observable, throwError } from 'rxjs';
@@ -20,7 +21,42 @@ export class MessageService {
 
   /** POST: add a new hero to the database */
 sendWelcome(welcome: WelcomeMessage) {
-  return this.http.post(this.connectService.getCreds.apiUrl, {...welcome,token:this.connectService.getCreds.apiToken});
+  return this.http.post(env.apiUrl, {...welcome,token:this.connectService.getCreds.apiToken});
 }
+
+sendSMS(
+  phone:string, 
+  message:string):Observable<any>{
+      return this.http.post<any>(env.apiUrl+"/sendsms",{
+        recipient:phone,
+        message:message,
+        token:this.connectService.getCreds.apiToken
+      })
+   
+    
+  }
+
+sendMail(
+        subject:string, 
+        body:string,
+        sender_email:string, 
+        sender_name:string,
+        reciever_email:string, 
+        reciever_name:string,
+        view:string, 
+        token:string,
+        ):Observable<any>{
+            return this.http.post<any>(env.apiUrl+"/sendmail",{
+              subject:subject,
+              body:body,
+              sender_email:sender_email,
+              sender_name:sender_name,
+              reciever_email:reciever_email,
+              reciever_name:reciever_name,
+              view:view,
+              token:this.connectService.getCreds.apiToken
+      
+            })
+      }
 
 }

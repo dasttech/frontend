@@ -26,6 +26,12 @@ import { CreateAccountComponent } from './account/create-account/create-account.
 import { AccountFormComponent } from './account/account-form/account-form.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { EditComponent } from './account/edit/edit.component';
+import { ContactsComponent } from './account/profile/contacts/contacts.component';
+import { RecoverAccountComponent } from './account/recover-account/recover-account.component';
+import { AssetsComponent } from './save-asset/assets/assets.component';
+import { ViewComponent } from './save-asset/assets/view/view.component';
+import { RecoveryPageComponent } from './account/recover-account/recovery-page/recovery-page.component';
+import { NextOfKinComponent } from './account/recover-account/next-of-kin/next-of-kin.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +56,13 @@ import { EditComponent } from './account/edit/edit.component';
     CreateAccountComponent,
     AccountFormComponent,
     ProfileComponent,
-    EditComponent
+    EditComponent,
+    ContactsComponent,
+    RecoverAccountComponent,
+    AssetsComponent,
+    ViewComponent,
+    RecoveryPageComponent,
+    NextOfKinComponent
   ],
   imports: [
     BrowserModule,

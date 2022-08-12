@@ -1,0 +1,33 @@
+ul {
+    list-style-type: none;
+    li{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 5px;
+        opacity: 0.9;
+        &:hover{
+        opacity: 1;
+        }
+
+        button{
+            width: 150px;
+            color:white;
+            margin-right: 2%;
+            height: 40px;
+            border-radius: 10px;
+        }
+        .icons{
+            margin-right: 5%;
+            .bi{
+                font-size:20px;
+            margin-right: 20px;
+            }
+        }
+    }
+}
+
+.form_bg{
+    background: none!important;
+    color:red;
+}

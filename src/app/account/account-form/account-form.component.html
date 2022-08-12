@@ -38,30 +38,13 @@
                       </div>
                 </div>
                 <div class="row">
-                    <div class="mb-3 col-md-6">
+                    <div class="mb-3 col-md-12">
                         <label >Residential Address</label>
                         <input type="text" name="street_address" [(ngModel)]="street_address"  class="form-control"  id="address" aria-describedby="emailHelp">
                       </div>
-                      <div class="mb-3 col-md-6">
-                        <label >Name of Next of Kin</label>
-                        <input type="text" name="next_of_kin" [(ngModel)]="next_of_kin"  class="form-control" id="nextofkin" ngDefaultControl>
-                      </div>
                 </div>
                 
-                <div class="row">
-                      <div class="mb-3 col-md-6">
-                        <label >Nex of Kin Phone Number</label>
-                        <i><small class="text-danger"> Don't include country code</small></i>
-                      <div class="input-group mb-3">
-                        <span class="input-group-text">+{{country.length>0?countrycode:countries.countries[0][2]}}</span>
-                        <input type="number" maxlength="15" name="next_of_kin_phone" [(ngModel)]="next_of_kin_phone"  class="form-control" id="exampleInputPassword1">
-                      </div>
-                      </div>
-                      <div class="mb-3 col-md-6">
-                        <label >Nex of Kin Email</label>
-                        <input type="email" name="next_of_kin_email" [(ngModel)]="next_of_kin_email"  class="form-control" id="nextofkinemail">
-                      </div>
-                </div>
+                
               <div class="row">
                 <div class="col-12 text-center">
                     <button type="button"   class="btn btn-primary w-50 mt-5" (click)="createAccount()">Submit</button>
