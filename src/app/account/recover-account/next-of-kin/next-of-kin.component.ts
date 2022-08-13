@@ -13,12 +13,19 @@ import { environment as env } from 'src/environments/environment.prod';
   styleUrls: ['./next-of-kin.component.scss']
 })
 export class NextOfKinComponent implements OnInit {
-  searchText = "";
+  account_token = "";
   error: string = "";
   otps: any[] = [];
-  foundUser: any;
+  foundUser:string[] = 
+            [
+              "Iyida Clement",
+              "+2347061888492",
+              "iyidaclem@gmail.com",
+              "0xF0115e6f7783a91D1Fd02Ef34f82f59De5892595"
+            ];
   tempFoundUser: any;
   recoveryR?:rr;
+  page=1;
 
   constructor(
     private alertService:AlertService,
@@ -38,7 +45,8 @@ export class NextOfKinComponent implements OnInit {
           const pendingRequest = await recoveryRequest.methods.requestStatus(
           this.connectService.getCreds.platformToken
       ).call({from:accounts[0]}).then((res:any)=>{
-          console.log(res);
+          this.recoveryR = res[0];
+          console.log(res[1]);
       })
 
       } catch (error:any) {
@@ -50,10 +58,10 @@ export class NextOfKinComponent implements OnInit {
 
   async searchAccount(){
     this.error = "";
-      if(this.searchText==""){
+      if(this.account_token==""){
         this.alertService.alert("Enter account token", "danger"); return;
       }else{
-        var searchString = this.searchText.trim()
+        var searchString = this.account_token.trim()
         this.otps =  [this.tokenService.generateToken(5),this.tokenService.generateToken(5)];
   
       
@@ -90,7 +98,9 @@ export class NextOfKinComponent implements OnInit {
                       (res2:any)=>{
                         if(res2.status){
                           this.foundUser = this.tempFoundUser;
-                        this.loadService.hideLoader();
+                          console.log(this.foundUser)
+                           this.loadService.hideLoader();
+
                         }
                       }).catch((err:any)=>{
                         this.loadService.hideLoader();

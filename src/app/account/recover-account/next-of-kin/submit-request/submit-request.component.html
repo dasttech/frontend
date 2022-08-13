@@ -1,0 +1,70 @@
+<div class="container-fluid pt-5">
+    <div class="row pt-5">
+        <div class="col-md-6 offset-md-3">
+            <div class="alert text-light font-weight-bold" style="background-color: rgba(253, 251, 251,0.2);">
+                <div class="alert text-light font-weight-bold" *ngIf="error.length>1"
+                    style="background-color: rgba(255, 9, 9, 0.553);">{{error}}</div>
+
+                <form action="" *ngIf="foundUser.length > 1">
+                    <h3 class="text-center">{{foundUser.length>0?"Account Information":"Search Account"}}</h3>
+
+                    <div class="row">
+                        <div class="mb-3 col-md-6 offset-md-3" *ngIf="form_count==0">
+                            <label>Your Name</label>
+                            <input class="w-50 mt-3" type="text" name="requester_name" [(ngModel)]="requester_name"
+                                placeholder="Your name" class="form-control">
+                        </div>
+
+                        <div class="mb-3 col-md-6 offset-md-3" *ngIf="form_count==1">
+                            <label>Country</label>
+                            <select name="country" [(ngModel)]="requester_country" [value]="requester_country"
+                                class="form-control mt-3" id="country" aria-describedby="emailHelp">
+                                <option value="">Select your country</option>
+                                <option *ngFor="let country of countries.countries" [value]="country">{{country[1]}}
+                                </option>
+                            </select>
+                            <i><small class="text-warning"> Don't include country code</small></i>
+                            <div class="input-group mb-3">
+                                <span
+                                    class="input-group-text">+{{requester_country&&requester_country.length>0?countrycode:countries.countries[0][2]}}</span>
+                                <input type="number" maxlength="15" name="requester_phone" [(ngModel)]="requester_phone"
+                                    class="form-control" id="exampleInputPassword1">
+                            </div>
+                        </div>
+
+
+                        <div class="mb-3 col-md-6 offset-md-3" *ngIf="form_count==2">
+                            <label>Your Email</label>
+                            <input class="w-50 " type="email" name="requester_email" [(ngModel)]="requester_email"
+                                placeholder="Your email" class="form-control mt-3">
+                        </div>
+
+                        <div class="mb-3 col-md-6 offset-md-3" *ngIf="form_count==3">
+                            <label>What is your relationship with the owner of this account</label>
+                            <input class="w-50  m-3" type="text" name="relationship" [(ngModel)]="relationship"
+                                placeholder="Your relationship" class="form-control">
+                        </div>
+
+                        <div class="mb-3 col-md-6 offset-md-3" *ngIf="form_count==4">
+                            <label>Why do you want to recovery this account?</label>
+                            <textarea name="" id=""  rows="5"
+                            class="w-100 mt-3"
+                            name="reason" [(ngModel)]="reason"
+                            ></textarea>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="button" class=" mr-2" (click)="prev();" [disabled]="form_count==0">
+                                <i class="bi bi-skip-backward-btn-fill"> Previous</i></button> 
+                            <button type="button" class="" (click)="next();" *ngIf="form_count<field_count"><i
+                                    class="bi bi-fast-forward-btn-fill"></i> Next</button>
+                        </div>
+
+                        <div class="col-12 text-center p-3" *ngIf="form_count==field_count">
+                            <button type="button" (click)="sendRequest();">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

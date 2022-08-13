@@ -1,12 +1,18 @@
 export class Recoveryrequests {
-        requester_name?:string;
-        requester_country?:string;
-        requester_phone?:string;
-        requester_email?:string;
-        relationship?:string;
-        reason?:string;
-        account_token?:string;
-        account_address?:string;
-        num_of_contacts?:number;
-        request_date:number = new Date().getTime();
+        
+
+        constructor(
+        public requester_name?:string,
+        public requester_country?:string,
+        public requester_phone?:string,
+        public requester_email?:string,
+        public relationship?:string,
+        public reason?:string,
+        public account_token?:string,
+        public account_address?:string,
+        public num_of_contacts?:number,
+        public request_date:number = new Date().getTime()
+        ){
+
+        }
 }

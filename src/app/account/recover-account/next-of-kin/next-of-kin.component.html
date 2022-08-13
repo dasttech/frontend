@@ -1,28 +1,55 @@
-<div class="container pt-5">
+<div class="container pt-5" *ngIf="page==1">
     <div class="row pt-5">
         <div class="col-md-12 pt-5">
-           <div class="alert text-light font-weight-bold" style="background-color: rgba(253, 251, 251,0.2);">
-            <div class="alert text-light font-weight-bold" *ngIf="error.length>1" style="background-color: rgba(255, 9, 9, 0.553);">{{error}}</div>
-         <h3 class="text-center">Search account</h3>
+            <div class="alert text-light font-weight-bold" style="background-color: rgba(253, 251, 251,0.2);">
+                <div class="alert text-light font-weight-bold" *ngIf="error.length>1"
+                    style="background-color: rgba(255, 9, 9, 0.553);">{{error}}</div>
 
-         <form action="">
-                    
-            <div class="row">
-                  <div class="mb-3 col-md-6 offset-md-3" *ngIf="true">
-                    <label >Enter Account Token</label>
-                    <input class="w-50 " type="text" name="searchText" [(ngModel)]="searchText"  placeholder="Account Token" class="form-control" id="email">
-                  </div>
-                  
+                <form action="" *ngIf="foundUser.length===0">
+                    <h3 class="text-center">{{foundUser.length>0?"Account Information":"Search Account"}}</h3>
 
-                  
-                  <div class="col-12 text-center pt-5">
-                    <button type="button"  (click)="searchAccount();error=''">Submit</button>
+                    <div class="row">
+                        <div class="mb-3 col-md-6 offset-md-3" *ngIf="true">
+                            <label>Enter Account Token</label>
+                            <input class="w-50 " type="text" name="account_token" [(ngModel)]="account_token"
+                                placeholder="Account Token" class="form-control" id="email">
+                        </div>
+
+
+
+                        <div class="col-12 text-center pt-5">
+                            <button type="button" (click)="searchAccount();error=''">Submit</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div *ngIf="foundUser.length>0">
+                    <h1 class="text-center">Account details</h1>
+
+                    <ol>
+                        <li *ngFor="let info of foundUser; let j = index">
+                            {{j==0?info:info.slice(0,3)+"..."+info.slice(info.length-5,info.length)}}
+                        </li>
+                    </ol>
+                    <button class="btn btn-primary" 
+                        (click)="page=2">Continue</button>
                 </div>
-            </div>      
-            
-            
-        </form>
-           </div>
+            </div>
         </div>
+
+        <div class="col-md-12 p-5">
+            <div class="alert text-light font-weight-bold" style="background-color: rgba(253, 251, 251,0.2);">
+                <h5 *ngIf="recoveryR&&!recoveryR.requester_name">No pending request</h5>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container pt-5" *ngIf="page==2">
+<div class="row pt-5">
+    <div class="col-md-12 pt-5">
+        
+       <app-submit-request [account_token]="account_token" [foundUser]=foundUser></app-submit-request>
     </div>
 </div>
