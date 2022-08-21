@@ -14,7 +14,7 @@ export const environment = {
   assetsAbi: Assets.abi as AbiItem[],
   recoveryAddr:"0xB7424e2c209EC466b281DB6402Ab309E01CC27AD",
   recoveryAbi: Recovery.abi as AbiItem[],
-  chainId:3,
+  chainId:97,
   apiUrl:"https://app.dast.tech/api",
   // apiUrl:"http://localhost:8000/api",
 };
