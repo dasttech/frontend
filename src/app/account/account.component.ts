@@ -26,7 +26,6 @@ export class AccountComponent implements OnInit {
 
   ngOnInit(): void {
     {
-        this.loadService.changeMessage("Fetching user data");
     setTimeout(async () => {
       if(!this.accountService.isloaded&&this.connectService.isConnected){
         await this.accountService.fetchUserData(this.connectService.getCreds.platformToken);

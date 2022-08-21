@@ -18,10 +18,10 @@ export class NextOfKinComponent implements OnInit {
   otps: any[] = [];
   foundUser:string[] = 
             [
-              "Iyida Clement",
-              "+2347061888492",
-              "iyidaclem@gmail.com",
-              "0xF0115e6f7783a91D1Fd02Ef34f82f59De5892595"
+              // "Iyida Clement",
+              // "+2347061888492",
+              // "iyidaclem@gmail.com",
+              // "0xF0115e6f7783a91D1Fd02Ef34f82f59De5892595"
             ];
   tempFoundUser: any;
   recoveryR?:rr;
@@ -46,7 +46,6 @@ export class NextOfKinComponent implements OnInit {
           this.connectService.getCreds.platformToken
       ).call({from:accounts[0]}).then((res:any)=>{
           this.recoveryR = res[0];
-          console.log(res[1]);
       })
 
       } catch (error:any) {
@@ -66,7 +65,7 @@ export class NextOfKinComponent implements OnInit {
   
       
       
-        this.loadService.Loader();
+        this.loadService.Loader("Processing...");
         const web3 = await this.connectService.checkConnection();
         const userData = new this.connectService.web3.eth.Contract(env.usersAbi,env.usersAddr)
         const accounts = await  this.connectService.web3.eth.getAccounts();
@@ -84,7 +83,6 @@ export class NextOfKinComponent implements OnInit {
                 if(res[0]==''){
                   this.loadService.hideLoader();
                   this.error="User not found"
-                  this.foundUser = res;
                 }
                 else{
                     this.tempFoundUser = res;
@@ -98,7 +96,6 @@ export class NextOfKinComponent implements OnInit {
                       (res2:any)=>{
                         if(res2.status){
                           this.foundUser = this.tempFoundUser;
-                          console.log(this.foundUser)
                            this.loadService.hideLoader();
 
                         }

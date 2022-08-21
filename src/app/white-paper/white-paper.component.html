@@ -3,26 +3,42 @@
         <div class="title">
             <h2>WHITE PAPER</h2>
             <p>DIGITAL ACCESS SECURITY TOKEN</p>
+            <button class="btn-danger m-5">Download</button>
         </div>
-        <br> 
+        <br>
         <div class="selection">
             <div class="introduction">
-                <div class="intro"><p>INTRODUCTION</p></div>
-                <div class=""><img (click) = "introDisplay()" src="{{plus}}" alt="plus-icon"></div>
+                <div class="intro">
+                    <p>INTRODUCTION</p>
+                </div>
+                <div class=""><img (click)="introDisplay()" src="{{plus}}" alt="plus-icon"></div>
             </div>
-            <div [hidden] = "iDisplay" class="intro-display"><p>This div will display when I click on the plus-icon for introduction.</p></div>
-            
+            <div data-aos="zoom-in" data-aos-duration="3000" [hidden]="iDisplay" class="intro-display">
+                <p>Digital Access Security Token is a working infrastructure of provable trust for all. 
+                    Digital Access Security Token is a security technology layer that helps users to secure and recover their digital 
+                    assets for their family members or next of kin in case 
+                    of unforeseen circumstances like loss of life. DAST is a secured recovery technology of assets of loved ones. </p>
+            </div>
+
             <div class="tokenomics">
-                <div class="token"><p>TOKENOMICS</p></div>
-                <div class=""><img (click) = "tokenDisplay()" src="{{plus}}" alt="plus-icon"></div>
+                <div class="token">
+                    <p>TOKENOMICS</p>
+                </div>
+                <div class=""><img (click)="tokenDisplay()" src="{{plus}}" alt="plus-icon"></div>
             </div>
-            <div [hidden] = "tDisplay" class="token-display"><p>This div will display when I click on the plus-icon for tokenomic.</p></div>
-            
+            <div data-aos="zoom-in" data-aos-duration="3000" [hidden]="tDisplay" class="token-display">
+                <p></p>
+            </div>
+
             <div class="burning-policy">
-                <div class="burning"><p>BURNING POLICY</p></div>
-                <div class=""><img (click) = "burningDisplay()" src="{{plus}}" alt="plus-icon"></div>  
+                <div class="burning">
+                    <p>BURNING POLICY</p>
+                </div>
+                <div class=""><img (click)="burningDisplay()" src="{{plus}}" alt="plus-icon"></div>
             </div>
-            <div [hidden] = "bDisplay" class="burning-display"><p>This div will display when I click on the plus-icon for introBurning policyduction.</p></div>
+            <div data-aos="zoom-in" data-aos-duration="3000" [hidden]="bDisplay" class="burning-display">
+                <p></p>
+            </div>
         </div>
     </div>
 </div>

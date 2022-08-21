@@ -1,0 +1,10 @@
+.whyus{
+    @media(max-width: 991px){
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
+    
+img{
+        border-radius: 30%;
+    }

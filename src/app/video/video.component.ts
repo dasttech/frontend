@@ -12,7 +12,7 @@ export class VideoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  video = 'assets/videos/dast.mp4';
+  video = 'https://dast.tech/videos/dast.mp4';
   preview = 'assets/images/Video Player Container.png'
 
 }

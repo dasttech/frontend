@@ -48,7 +48,7 @@ export class AssetsComponent implements OnInit {
     if(this.asset_title==""){this.alertService.alert("Enter asset title","danger"); return;}
     if(this.asset_asset==""){this.alertService.alert("Enter the your asset","danger"); return;}
 
-    this.loadService.Loader();
+    this.loadService.Loader("Updating assets...");
     const web3 = await this.connectService.checkConnection();
     const editedAsset = new this.connectService.web3.eth.Contract(env.assetsAbi,env.assetsAddr)
     const accounts = await  this.connectService.web3.eth.getAccounts();
@@ -87,7 +87,7 @@ export class AssetsComponent implements OnInit {
 
   async delete(id:number){
     
-    this.loadService.Loader();
+    this.loadService.Loader("Deleting...");
     const web3 = await this.connectService.checkConnection();
     const targetasset = new this.connectService.web3.eth.Contract(env.assetsAbi,env.assetsAddr)
     const accounts = await  this.connectService.web3.eth.getAccounts();

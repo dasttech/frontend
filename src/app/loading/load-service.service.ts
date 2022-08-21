@@ -11,7 +11,9 @@ export class LoadServiceService {
   constructor() { }
   
 
-  Loader(){
+  Loader(newMessage:string){
+    
+    this.message =newMessage;
     this.showLoader = true;
   }
 
@@ -19,7 +21,4 @@ export class LoadServiceService {
     this.showLoader= false;
   }
 
-  changeMessage(newMessage:string){
-    this.message =newMessage;
-  }
 }

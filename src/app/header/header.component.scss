@@ -1,3 +1,5 @@
+@import 'assets/styles';
+
 .navbar{
   font-family: 'Inter';
 }
@@ -9,12 +11,27 @@ nav{
     justify-content: space-evenly;
     color: white;
     position: absolute;
-  	width: 100%;
+  	width: 100vw;
   	height: 93px;
     position: fixed;
   	top: 0px;
-  	background: rgba(35, 46, 87, 0.8);
+  	background: rgba(12, 18, 45, 0.8);
   	backdrop-filter: blur(12.1935px);
+
+    .connectbtn{
+      button {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      
+      &:hover{
+        background-color: rgba(76, 76, 223, 0.9);
+        border: 1px solid rgba(76, 76, 223, 0.9);
+
+      }
+    }
+    }
 }
 .mobile-nav{
   flex-direction: column;
@@ -47,7 +64,7 @@ nav{
 /* Styling Logo*/
 
 .logo{
-    padding: 3vh 3vw;
+    padding: 3vh -10vw;
     text-align: left;
     width: 20vw;
     display: flex;
@@ -59,6 +76,9 @@ nav{
   	font-family: 'Inter';
   	font-style: normal;
   	gap: 10px;
+    margin-left: -10%;
+
+
 }
 
 /* Styling Navigation Links*/
@@ -142,7 +162,7 @@ button{
 	align-items: flex-start;
 	background: none;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 991px) {
 	.logo{
 		/*top: 90%;*/
 		padding-top: 25px;

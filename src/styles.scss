@@ -1,8 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import "/node_modules/bootstrap/scss/bootstrap.scss";
 @import '~bootstrap-icons/font/bootstrap-icons';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Open+Sans:wght@800&family=Poppins:wght@300;700&display=swap');
+
+$color1: linear-gradient(122.8deg, #1D3062 14.84%, #3D272B 100%);
+
+
 body{
-	background: linear-gradient(122.8deg, #1D3062 14.84%, #3D272B 100%);
+	background: linear-gradient(122.8deg, #0C122D 14.84%, #0C122D 100%);
 }
 *{
 	margin: 0;
@@ -43,3 +48,16 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+
+html,body{
+	overflow-x: hidden;
+	width: 100vw;
+}
+
+p{
+font-family: Lato;
+
+}
+h1,h2,h3,h4,h5,h6{
+	font-family: Inter;
+}

@@ -1,8 +1,11 @@
-.container3{
-	background: rgba(255, 255, 255, 0.1);
+.container3 {
+	background: #0C122D;
 	padding-bottom: 120px;
+	width: 100vw;
+	margin-top: -2%;
 }
-.roadmap-cover{
+
+.roadmap-cover {
 	display: flex;
 	padding: 10px;
 	padding-top: 4cm;
@@ -10,7 +13,8 @@
 	justify-content: center;
 	text-align: center;
 }
-.title{
+
+.title {
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 300;
@@ -18,54 +22,60 @@
 	color: white;
 	line-height: 130%;
 }
-.roadmap{
+
+.roadmap {
 	display: flex;
 	padding-top: 20px;
 	width: 90%;
 	margin: auto;
 	justify-content: space-between;
 }
-.Q4, .Q1, .Q2{
-	padding: 20px;
-	margin: 10px 10px;
-	width: 100%;
-	height: 550px;
-	min-height: fit-content;
-	background: linear-gradient(122.8deg, #1D3062 14.84%, #3D272B 100%);
-	border: 5px solid rgba(219, 228, 254, 0.5);
-	border-radius: 20px;
-	text-align: center;
+
+.Q {
+	
+	background: rgba(255, 255, 255, 0.05);
+	border-radius: 16px;
+
+	/* Inside auto layout */
 	color: white;
-	font-family: 'Poppins';
-	font-style: normal;
-	font-weight: 300;
-	font-size: 25px;
-	line-height: 130%;
+	padding:20px;
+	@media(min-width:991px){
+	justify-content: space-evenly;
+	width: 30%;
+	margin-left: 1.5%;
+	}
 }
-.Q1 p, .Q2 p, .Q4 p{
+
+.Q p {
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 500;
 	font-size: 18px;
 	line-height: 250%;
+	list-style: none;
 }
-.rm{
+
+.rm {
 	background-color: white;
-	border-radius: 100%;
+	border-radius: 50%;
 	width: 40px;
 	height: 40px;
-	padding: 3px;
+	padding: 10px;
 }
 
 @media screen and (max-width: 700px) {
-	.roadmap{
+	.roadmap {
 		flex-direction: column;
 		width: 100%;
 	}
-	.title p{
+
+	.title p {
 		font-size: 12px;
 	}
-	.Q4, .Q1, .Q2{
+
+	.Q4,
+	.Q1,
+	.Q2 {
 		width: 90%;
 		font-size: 23px;
 		padding: 3px;
@@ -73,11 +83,14 @@
 		margin: auto;
 		margin-top: 12px
 	}
-	.Q1 p, .Q2 p, .Q4 p{
-	font-family: 'Inter';
-	font-style: normal;
-	font-weight: 150;
-	font-size: 16px;
-	line-height: 250%;
-}
+
+	.Q1 p,
+	.Q2 p,
+	.Q4 p {
+		font-family: 'Inter';
+		font-style: normal;
+		font-weight: 150;
+		font-size: 16px;
+		line-height: 250%;
+	}
 }

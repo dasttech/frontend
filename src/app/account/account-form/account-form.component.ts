@@ -59,7 +59,7 @@ export class AccountFormComponent implements OnInit {
     if(this.phone==""){this.alertService.alert("Enter phone number", "danger"); return}
     if(this.street_address==""){this.alertService.alert("Enter street address", "danger"); return}
 
-    this.loadService.Loader()
+    this.loadService.Loader("Creating Account")
     const web3 = await this.connectService.checkConnection();
     const newUser = new this.connectService.web3.eth.Contract(env.usersAbi,env.usersAddr)
     const accounts = await  this.connectService.web3.eth.getAccounts()

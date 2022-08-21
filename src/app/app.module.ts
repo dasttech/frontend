@@ -33,6 +33,7 @@ import { ViewComponent } from './save-asset/assets/view/view.component';
 import { RecoveryPageComponent } from './account/recover-account/recovery-page/recovery-page.component';
 import { NextOfKinComponent } from './account/recover-account/next-of-kin/next-of-kin.component';
 import { SubmitRequestComponent } from './account/recover-account/next-of-kin/submit-request/submit-request.component';
+import { HowComponent } from './how/how.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { SubmitRequestComponent } from './account/recover-account/next-of-kin/su
     ViewComponent,
     RecoveryPageComponent,
     NextOfKinComponent,
-    SubmitRequestComponent
+    SubmitRequestComponent,
+    HowComponent
   ],
   imports: [
     BrowserModule,

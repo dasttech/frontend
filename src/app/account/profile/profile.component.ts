@@ -123,7 +123,7 @@ export class ProfileComponent implements OnInit {
     if(this.country==""){this.alertService.alert("Choose country", "danger"); this.isloading = false; return}
     if(this.street_address==""){this.alertService.alert("Enter street address", "danger"); this.isloading = false; return}
 
-    this.loadService.Loader()
+    this.loadService.Loader("Updating account")
     const web3 = await this.connectService.checkConnection();
     const editedUser = new this.connectService.web3.eth.Contract(env.usersAbi,env.usersAddr)
     const accounts = await  this.connectService.web3.eth.getAccounts();
@@ -187,7 +187,7 @@ export class ProfileComponent implements OnInit {
 
     if(this.email==""){this.alertService.alert("Enter your email address", "danger"); this.isloading = false; return}
     if(this.phone==""){this.alertService.alert("Enter phone number", "danger"); this.isloading = false; return}
-    this.loadService.Loader()
+    this.loadService.Loader("Updating contact")
     const web3 = await this.connectService.checkConnection();
     const editedUser = new this.connectService.web3.eth.Contract(env.usersAbi,env.usersAddr)
     const accounts = await  this.connectService.web3.eth.getAccounts();
@@ -240,7 +240,7 @@ export class ProfileComponent implements OnInit {
     this.isloading = !this.isloading;
     if(!this.contacts){return}
     if(this.contacts?.length<3){this.alertService.alert("Add minimum of 3 trusted contacts", "danger"); this.isloading = false; return}
-    this.loadService.Loader()
+    this.loadService.Loader("Adding contact")
     const web3 = await this.connectService.checkConnection();
     const editedUser = new this.connectService.web3.eth.Contract(env.usersAbi,env.usersAddr)
     const accounts = await  this.connectService.web3.eth.getAccounts();
@@ -297,7 +297,7 @@ export class ProfileComponent implements OnInit {
     if(this.nkin_country==""){this.alertService.alert("Enter next of kin country", "danger"); this.isloading = false; return} 
     if(this.nkin_relationship==""){this.alertService.alert("Enter your relationship with the next of kin", "danger"); this.isloading = false; return}  
 
-    this.loadService.Loader()
+    this.loadService.Loader("Adding next of kin")
 
     const web3 = await this.connectService.checkConnection();
     const editedUser = new this.connectService.web3.eth.Contract(env.usersAbi,env.usersAddr)

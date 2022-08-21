@@ -27,7 +27,7 @@
                     <h1 class="text-center">Account details</h1>
 
                     <ol>
-                        <li *ngFor="let info of foundUser; let j = index">
+                        <li  *ngFor="let info of foundUser; let j = index">
                             {{j==0?info:info.slice(0,3)+"..."+info.slice(info.length-5,info.length)}}
                         </li>
                     </ol>

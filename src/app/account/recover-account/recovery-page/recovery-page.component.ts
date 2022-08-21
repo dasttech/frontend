@@ -76,7 +76,7 @@ resend_counter:number = 60;
 
     
     
-      this.loadService.Loader();
+      this.loadService.Loader("Account search");
       const web3 = await this.connectService.checkConnection();
       const userData = new this.connectService.web3.eth.Contract(env.usersAbi,env.usersAddr)
       const accounts = await  this.connectService.web3.eth.getAccounts();
@@ -138,7 +138,7 @@ resend_counter:number = 60;
         if(this.email_pin==""){this.alertService.alert("Enter email pin", "danger"); return;}
         if(this.sms_pin==""){this.alertService.alert("Enter sms pin", "danger"); return;}
         
-        this.loadService.Loader();
+        this.loadService.Loader("Processing...");
         const web3 = await this.connectService.checkConnection();
         const userData = new this.connectService.web3.eth.Contract(env.usersAbi,env.usersAddr)
         const accounts = await  this.connectService.web3.eth.getAccounts();

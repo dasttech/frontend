@@ -84,7 +84,7 @@ export class EditComponent implements OnInit {
     if(this.next_of_kin==""){this.alertService.alert("Nexf of Kin name", "danger"); return}
     if(this.next_of_kin_phone==""){this.alertService.alert("Enter next of Kin phone number", "danger");return;}
     if(this.next_of_kin_email==""){this.alertService.alert("Enter of kin email address", "danger");return;}
-    this.loadService.Loader()
+    this.loadService.Loader("Processing...")
     const web3 = await this.connectService.checkConnection();
     const editedUser = new this.connectService.web3.eth.Contract(env.usersAbi,env.usersAddr)
     const accounts = await  this.connectService.web3.eth.getAccounts();
