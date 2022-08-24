@@ -88,8 +88,8 @@ export class AccountFormComponent implements OnInit {
     this.loadService.hideLoader();
     this.message.sendMail(
       "ACCOUNT CREATED",
-      `Dear ${this.fullname} your DAST account was created successfully.
-      We look forward to supporting you along the way.” “Congratulations on the new position, and many good wishes for your first day at [company name]. We want you to know that we believe in you and we're behind you in everything you do here. A warm welcome from the whole team here at DAST`,
+      `Dear ${this.fullname} thank you for completing your account on DAST, 
+      a Provable Trust For All. Always keep your token safe`,
       "admin@dast.tech",
       "DAST",
       this.email,
