@@ -1,0 +1,36 @@
+<div class="container p-5">
+    <div class="row pt-5 text-light">
+        <div class="col-md-8 offset-md-2">
+            <form>
+                <h1 class="display-2 font-weight-bold m-3 mb-5">Validation Report</h1>
+                
+               
+               <div class="row">
+                   <div class="mb-3 col-md-12">
+                       <label class="p-2">Approval Status </label>
+                       <!-- <input type="text"> -->
+                       <select  name="Approval" [(ngModel)]="approval" [value]="approval" class="form-control" id="country"  aria-describedby="emailHelp">
+                        <option value="0">Undecided</option>
+                        <option value="1">Approved</option>
+                        <option value="2">Rejected</option>
+                       </select>
+                     </div>
+
+               </div>
+               <div class="row">
+                   <div class="mb-3 col-md-12">
+                       <label >Comment</label>
+                        <textarea class="w-100 p-3" name="comment" [(ngModel)]="comment" [value]="comment" id=""rows="10" placeholder="Type summary of you conversation with the contact you called"></textarea>   
+                    </div>
+               </div>
+               
+               
+             <div class="row">
+               <div class="col-12 text-center">
+                   <button type="button"   class="btn btn-primary w-50 mt-5" (click)="saveReport()">Submit</button>
+               </div>
+             </div>
+             </form>
+        </div>
+    </div>
+</div>

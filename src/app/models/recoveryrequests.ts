@@ -11,6 +11,7 @@ export class Recoveryrequests {
         public account_token?:string,
         public account_address?:string,
         public num_of_contacts?:number,
+        public num_of_validators?:number,
         public request_date:number = new Date().getTime()
         ){
 

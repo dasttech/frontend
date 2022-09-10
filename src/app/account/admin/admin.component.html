@@ -1,0 +1,51 @@
+<div class="container pt-5">
+    <div class="row pt-5">
+        <div class="col-md-2">
+          <h1>Admin Tools</h1>
+        </div>
+        <div class="col-md-10">
+            <h1 class="text-light">Admin Panel</h1>
+
+            <form action="" class="p-5">
+               
+                <div class="alert alert-info offset-md-1 w-75 p-5"> 
+                    <h2>
+                    <label for="" class="">Granting Role</label>
+                </h2>
+                    <label for="">Select Role</label>: <br>
+                    <select name="role" id="role" name="role" [(ngModel)]="role" class="ml-3 w-100">
+                        <option value="">--Select Role--</option>
+                        <option value="DEFAULT_ADMIN_ROLE">DEFAULT ADMIN ROLE</option>
+                        <option value="ADMIN">ADMIN</option>
+                        <option value="VALIDATOR">VALIDATOR</option>
+                    </select><br>
+                    <label for="">Enter Address</label><br>
+                    <input name="user_address" [(ngModel)]="user_address" class="w-100" type="text" placeholder="e.g. 0x41b62043B4Ec68C907Bd65F4e6E3...."><br><br>
+
+                    <button type="button" (click)="grantRole();">Grant Role</button>
+                </div><br>
+
+
+               
+                <div class="alert alert-info offset-md-1 w-75 p-5"> 
+                    <h2>
+                    <label for="" class="">Revoking Role</label>
+                </h2>
+                    <label for="">Select Role</label>: <br>
+                    <select name="role" id="role" name="role" [(ngModel)]="role" class="ml-3 w-100">
+                        <option value="">--Select Role--</option>
+                        <option value="DEFAULT_ADMIN_ROLE">DEFAULT ADMIN ROLE</option>
+                        <option value="ADMIN">ADMIN</option>
+                        <option value="VALIDATOR">VALIDATOR</option>
+                    </select><br>
+                    <label for="">Enter Address</label><br>
+                    <input name="user_address" [(ngModel)]="user_address" class="w-100" type="text" placeholder="e.g. 0x41b62043B4Ec68C907Bd65F4e6E3...."><br><br>
+
+                    <button type="button" (click)="revokeRole();">Revoke Role</button>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>

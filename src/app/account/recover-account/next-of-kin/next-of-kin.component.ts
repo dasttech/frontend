@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoadServiceService } from 'src/app/loading/load-service.service';
 import { Recoveryrequests as rr } from 'src/app/models/recoveryrequests';
 import { AlertService } from 'src/app/services/alert.service';
@@ -25,20 +26,21 @@ export class NextOfKinComponent implements OnInit {
             ];
   tempFoundUser: any;
   recoveryR?:rr;
+  isValidated = false;
   page=1;
 
   constructor(
     private alertService:AlertService,
     private loadService:LoadServiceService,
     private connectService:ConnectService,
-    private tokenService:TokenService
+    private tokenService:TokenService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
     setTimeout(async()=>{
       
       try {
-        
           const web3 = await this.connectService.checkConnection();
           const recoveryRequest = new this.connectService.web3.eth.Contract(env.recoveryAbi,env.recoveryAddr)
           const accounts = await  this.connectService.web3.eth.getAccounts();
@@ -46,6 +48,9 @@ export class NextOfKinComponent implements OnInit {
           this.connectService.getCreds.platformToken
       ).call({from:accounts[0]}).then((res:any)=>{
           this.recoveryR = res[0];
+          this.isValidated = Number(res[0].num_of_validators) == Number(res[0].num_of_contacts);
+        
+        //  console.log(res)
       })
 
       } catch (error:any) {
@@ -95,9 +100,8 @@ export class NextOfKinComponent implements OnInit {
                     send({from:this.connectService.accounts[0]}).then(
                       (res2:any)=>{
                         if(res2.status){
-                          this.foundUser = this.tempFoundUser;
+                          this.foundUser = this.tempFoundUser[0];
                            this.loadService.hideLoader();
-
                         }
                       }).catch((err:any)=>{
                         this.loadService.hideLoader();
@@ -122,6 +126,35 @@ export class NextOfKinComponent implements OnInit {
         }
       }
       
+      }
+
+      async recoverAccount(){
+        try {
+        if(this.recoveryR?.account_address==null){
+          return;
+        }
+        
+          this.loadService.Loader("Wait...")
+          const web3 = await this.connectService.checkConnection();
+          const recoveryRequest = new this.connectService.web3.eth.Contract(env.recoveryAbi,env.recoveryAddr)
+          const accounts = await  this.connectService.web3.eth.getAccounts();
+          const pendingRequest = await recoveryRequest.methods.recoverAccount(
+          this.connectService.getCreds.platformToken,
+          this.recoveryR.account_address
+      ).send({from:accounts[0]}).then((res:any)=>{
+        this.loadService.hideLoader()
+          this.recoveryR = res[0];
+         this.alertService.alert("Account recovery successful","success");
+         this.router.navigateByUrl("account");
+
+      })
+
+      } catch (error:any) {
+        
+        this.loadService.hideLoader()
+        this.alertService.alert(error.message,"danger");
+      }
+
       }
 
 }

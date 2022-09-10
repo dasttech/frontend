@@ -16,6 +16,9 @@ import { AssetsComponent } from './app/save-asset/assets/assets.component';
 import { RecoveryPageComponent } from './app/account/recover-account/recovery-page/recovery-page.component';
 import { NextOfKinComponent } from './app/account/recover-account/next-of-kin/next-of-kin.component';
 import { SubmitRequestComponent } from './app/account/recover-account/next-of-kin/submit-request/submit-request.component';
+import { ValidationComponent } from './app/account/validation/validation.component';
+import { AdminComponent } from './app/account/admin/admin.component';
+import { ReportComponent } from './app/account/validation/report/report.component';
 
 
 
@@ -35,6 +38,9 @@ const routes: Routes = [
   { path: 'account/recovery/search', component: RecoveryPageComponent}, 
   { path: 'account/recovery/next-of-kin', component: NextOfKinComponent},
   { path: 'account/recovery/submit-request', component: SubmitRequestComponent},
+  { path: 'account/validation', component: ValidationComponent},
+  { path: 'account/validation/report', component: ReportComponent},
+  { path: 'account/admin', component: AdminComponent},
   {path: '**', redirectTo: '/account'}
 
   

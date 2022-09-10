@@ -13,51 +13,55 @@ import { TokenService } from '../services/token.service';
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
-  myAccount:User = new User("","","","","","","","","","","","","");
-  userExist:boolean = false;
+  myAccount: User = new User("", "", "", "", "", "", "", "", "", "", "", "", "");
+  userExist: boolean = false;
+  isValidator:boolean = false;
+  isAdmin:boolean = false;
   constructor(
-    private connectService:ConnectService,
-    private loadService:LoadServiceService,
-    private accountService:AccountService,
-    private tokenService:TokenService
-    ) { 
+    private connectService: ConnectService,
+    private loadService: LoadServiceService,
+    private accountService: AccountService,
+    private tokenService: TokenService
+  ) {
     // this.loadService.Loader();
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     {
-    setTimeout(async () => {
-      if(!this.accountService.isloaded&&this.connectService.isConnected){
-        await this.accountService.fetchUserData(this.connectService.getCreds.platformToken);
-       this.myAccount = this.accountService.getUser; 
-    
-      }else{
-        this.myAccount = this.accountService.getUser;
-        this.loadService.hideLoader();
-        
-        // fetchlatest
-        await this.accountService.fetchUserData(this.connectService.getCreds.platformToken);
-       this.myAccount = this.accountService.getUser; 
-    
-    
-      }
-    }, 0);
-  
-  }
-  }
-  
-  ngOnDestroy():void{
-    this.loadService.hideLoader();  
+      setTimeout(async () => {
+        if (!this.accountService.isloaded && this.connectService.isConnected) {
+          await this.accountService.fetchUserData(this.connectService.getCreds.platformToken);
+          this.myAccount = this.accountService.getUser;
+          // console.log(this.myAccount);
+        } else {
+          this.myAccount = this.accountService.getUser;
+          this.loadService.hideLoader();
+          // fetchlatest
+          await this.accountService.fetchUserData(this.connectService.getCreds.platformToken);
+          this.myAccount = this.accountService.getUser;
+        }
+
+        const admin = this.accountService.DEFAULT_ADMIN_ROLE;
+
+      }, 0);
+
+    }
+
+   
   }
 
-  get isAccountCreated(){
-   try {
-    return this.myAccount.fullname.length>0;
-    
-   } catch (error) {
-    return false;
-    
-   }
+  ngOnDestroy(): void {
+    this.loadService.hideLoader();
+  }
+
+  get isAccountCreated() {
+    try {
+      return this.myAccount.fullname.length > 0;
+
+    } catch (error) {
+      return false;
+
+    }
   }
 
 }

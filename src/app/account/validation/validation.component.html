@@ -1,0 +1,82 @@
+<div class="container pt-5">
+    <div class="row pt-5">
+        <div class="col-md-12">
+            <h1 class="text-center text-light">
+                Pending Recovery Requests
+            </h1>
+            <div class="col" *ngIf="currentlyValidating.status!=null&&!currentlyValidating.status">
+                <div *ngFor="let request of pendingRequests; let i = index">
+                    <div class="accordion" id="accordionExample" *ngIf="(request.num_of_contacts&&request.num_of_validators)&&request.num_of_contacts>request.num_of_validators">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" (click)="showItem(''+request.account_token)"
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                    aria-expanded="false" aria-controls="collapseThree">
+                                    {{request.requester_name }} - {{ request.requester_country }}
+                                </button>
+                            </h2>
+                            <div class="" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                <div class="accordion-body" *ngIf="currentitem==request.account_token">
+                                    <h1>Recovery Info</h1>
+                                    <b>Reason: </b> {{ request.reason }}
+                                    <hr>
+                                    <b>Requester Phone</b> {{ request.requester_phone }}
+                                    <hr>
+                                    <b>Requester Email</b> {{ request.requester_email }}
+                                    <hr>
+                                    <b>Requester Relationship</b> {{ request.relationship }}
+                                    <hr>
+                                    <button class="btn btn-primary"
+                                        (click)="acceptValidation(request.account_token,request.num_of_contacts)">Validate</button>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+            <div class="col text-light" *ngIf="currentlyValidating.status!=null&&currentlyValidating.status">
+                <h3>Unfinish Validatation</h3>
+                
+                <div class="bg-muted  p-3">Your duty is to validate the recovery processing
+                    by calling the trusted contact. </div>
+
+                <div class="bg-dark p-5" *ngIf="currentlyValidating.index!=null">
+                    <h3>Requester Information</h3>
+                    <ul>
+                        <li>
+                            Name: {{ myValidationData .requester_name }}
+                        </li>
+                        <li>
+                            Country: {{ myValidationData .requester_country}}
+                        </li>
+                        <li>
+                            Relationship{{ myValidationData .relationship }}
+                        </li>
+                        <li>
+                            Reason : {{ myValidationData .reason }}
+                        </li>
+                    </ul>
+
+                    <h3>Owner's Information</h3>
+                    <ul *ngIf="assetOwnersData.length!=0">
+                        <li>Name: {{assetOwnersData[0].fullname}}</li>
+                    </ul>
+
+                    <h3>Trusted Contact's Information</h3>
+                    <small class="text-info">This contact is one of his trusted contacts. Call him and verify the authenticity of the next of kin</small>
+                    <ul *ngIf="assetOwnersData.length!=0">
+                        <li>Name: {{assetOwnersData[1][currentlyValidating.index-1].name}}</li>
+                        <li>Email: {{assetOwnersData[1][currentlyValidating.index-1].email}}</li>
+                        <li>Phone: {{assetOwnersData[1][currentlyValidating.index-1].phone}}</li>
+                        <li>Country: {{assetOwnersData[1][currentlyValidating.index-1].country}}</li>
+                        <li>Relationship: {{assetOwnersData[1][currentlyValidating.index-1].relationship}}</li>
+                    </ul>
+
+                    <button class="btn btn-primary" (click)="goToReport()">Give Report</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
