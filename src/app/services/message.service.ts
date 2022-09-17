@@ -59,4 +59,20 @@ sendMail(
             })
       }
 
+      subscribe(
+        title:string, 
+        body:string,
+        email:string, 
+        name:string
+        ):Observable<any>{
+            return this.http.post<any>(env.apiUrl+"/subscribe",{
+              title:title,
+              body:body,
+              email:email,
+              name:name,
+              token:this.connectService.getCreds.apiToken
+      
+            })
+      }
+
 }

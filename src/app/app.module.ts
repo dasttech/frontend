@@ -37,6 +37,7 @@ import { HowComponent } from './how/how.component';
 import { ValidationComponent } from './account/validation/validation.component';
 import { AdminComponent } from './account/admin/admin.component';
 import { ReportComponent } from './account/validation/report/report.component';
+import { SubscribeComponent } from './subscribe/subscribe.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { ReportComponent } from './account/validation/report/report.component';
     HowComponent,
     ValidationComponent,
     AdminComponent,
-    ReportComponent
+    ReportComponent,
+    SubscribeComponent
   ],
   imports: [
     BrowserModule,
