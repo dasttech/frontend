@@ -1,13 +1,13 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12 text-center text-light p-5">
-      <div class="w-75 offset-2">
+    <div class="col-md-8 offset-md-2 text-center text-light p-5">
+      <div class="">
         <h1>Waiting List</h1>
         <p >Join DAST waiting list to receive regular updates on the progress of the development.
           We will notify when we about to launch.
         </p> 
         <input type="text"   name="username" [(ngModel)]="username" [value]="username"  class="w-75 p-2" placeholder="Enter your name"> <br><br>
-        <input type="email"  name="email" [(ngModel)]="email" [value]="email"  class="w-50 p-2" placeholder="Enter your email"> <br><br>
+        <input type="email"  name="email" [(ngModel)]="email" [value]="email"  class="w-75 p-2" placeholder="Enter your email"> <br><br>
           <button class="btn btn-danger" (click)="subscribe()">Subscribe</button>
       </div>
     </div>

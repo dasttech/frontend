@@ -30,7 +30,7 @@ export class SubscribeComponent implements OnInit {
       this.alertService.alert("Please Enter your name", "danger");
       return;
     }
-    else if(!/^\S+@\S+\.\S+$/.test(this.email)){
+    else if(!/^\S+@\S+\.\S+$/.test(this.email.trim())){
       this.loadService.hideLoader();
       this.alertService.alert("Invalid Email Format", "danger");
       return;
@@ -38,7 +38,6 @@ export class SubscribeComponent implements OnInit {
 
     this.alertService.alert("Subscription successfull. You will get confirmation mail from us", "success");
     this.loadService.hideLoader();
-    this.email = this.username =  "";
     this.message.subscribe(
       "Waiting List",
       `Congratulations ${this.username}! You have been added to dast waiting list. 
@@ -49,6 +48,7 @@ export class SubscribeComponent implements OnInit {
         next: ()=>{}
       })
 
+    this.email = this.username =  "";
   }
 
 }
