@@ -121,5 +121,8 @@
 			}
 		}
 	},
-	"defaultProject": "dastfront"
+  "defaultProject": "dastfront",
+  "cli": {
+    "analytics": false
+  }
 }
