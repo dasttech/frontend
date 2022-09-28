@@ -39,6 +39,7 @@ import { AdminComponent } from './account/admin/admin.component';
 import { ReportComponent } from './account/validation/report/report.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
 import { TeamComponent } from './team/team.component';
+import { PricingComponent } from './pricing/pricing.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { TeamComponent } from './team/team.component';
     AdminComponent,
     ReportComponent,
     SubscribeComponent,
-    TeamComponent
+    TeamComponent,
+    PricingComponent
   ],
   imports: [
     BrowserModule,
