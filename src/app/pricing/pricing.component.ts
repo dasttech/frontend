@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PricingComponent implements OnInit {
   // avatar = 'assets/images/Avatar.png';
   check = 'assets/icons/Check.png';
+  nocheck = 'assets/icons/nocheck.png';
 
   constructor() { }
 
