@@ -3,7 +3,7 @@
 
 Trusted recovery technology for digital assets. Your family/next of
 kin will have access to your assets in case of unforseen
-circumstances
+circumbstances
 
 ## Development server
 
