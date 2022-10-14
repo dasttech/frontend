@@ -88,3 +88,17 @@
 
 
 
+.waiting {
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	top: 0%;
+	z-index: 1000;
+	background-color: #0D122D;
+	display: flex;
+	color: white;
+	flex-direction: column;
+	align-self: center;
+	justify-content: center;
+	padding: 5%;
+}

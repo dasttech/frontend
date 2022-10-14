@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoadServiceService } from '../loading/load-service.service';
 import { AlertService } from '../services/alert.service';
 import { MessageService } from '../services/message.service';
@@ -16,7 +17,8 @@ export class SubscribeComponent implements OnInit {
   constructor(
     private loadService:LoadServiceService,
     private alertService:AlertService,
-    private message:MessageService
+    private message:MessageService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -49,6 +51,8 @@ export class SubscribeComponent implements OnInit {
       })
 
     this.email = this.username =  "";
+    localStorage.setItem("iswaiting", "1");
+   this.router.navigateByUrl("/");
   }
 
 }

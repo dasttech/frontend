@@ -19,6 +19,7 @@ import { SubmitRequestComponent } from './app/account/recover-account/next-of-ki
 import { ValidationComponent } from './app/account/validation/validation.component';
 import { AdminComponent } from './app/account/admin/admin.component';
 import { ReportComponent } from './app/account/validation/report/report.component';
+import { SubscribeComponent } from './app/subscribe/subscribe.component';
 
 
 
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'account/validation', component: ValidationComponent},
   { path: 'account/validation/report', component: ReportComponent},
   { path: 'account/admin', component: AdminComponent},
+  { path: 'waiting', component: SubscribeComponent},
   {path: '**', redirectTo: '/account'}
 
   

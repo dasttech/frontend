@@ -1,15 +1,33 @@
 <div class="main pb-5">
-	<div class="key"  data-aos="fade-down">
+	<div class="key" data-aos="fade-down">
 		<img src="{{key}}">
 	</div>
 	<div class="title pb-5">
 		<h2>DIGITAL ACCESS <br> SECURITY</h2>
-		<p>Trusted recovery technology for digital assets. Your family/next of <br> kin will have access to your assets in case of unforseen <br> circumstances...</p> <br>
+		<p>Trusted recovery technology for digital assets. Your family/next of <br> kin will have access to your assets
+			in case of unforseen <br> circumstances...</p> <br>
 		<button routerLink="/account">GET STARTED</button>
 
-			
+
 	</div>
+
 	<video loop muted autoplay poster="img/videoframe.jpg" class="fullscreenbg">
-				<source src="https://dast.tech/videos/particles.mp4" type="video/mp4">
-			</video>
+		<source src="https://dast.tech/videos/particles.mp4" type="video/mp4">
+	</video>
+</div>
+
+<div class="waiting" *ngIf="!iswaiting" >
+	<div class="container text-center">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<h1>Waiting List</h1>
+					<p class="">
+						Join DAST waiting list to receive regular updates on the progress of the development.
+						We will notify when we about to launch.
+					</p>
+					<button class="btn btn-success" routerLink="/waiting">JOIN</button>
+					<p class="alert alert-warning mt-5">Already joined <input type="checkbox" name="" id="" (click)="alreadyWaiting()"></p>
+				</div>
+			</div>
+	</div>
 </div>
